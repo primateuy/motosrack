@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="car_rental_contract_view_form_primate_ext" model="ir.ui.view">
+        <field name="name">car.rental.contract.view.form.primate.ext</field>
+        <field name="model">car.rental.contract</field>
+        <field name="inherit_id" ref="fleet_rental.car_rental_contract_view_form"/>
+        <field name="arch" type="xml">
+            <!-- FIX [#001]: journal_type y account_type venian ocultos
+                 (invisible="1") en el form original y se resolvian solo
+                 por un default hardcodeado a un ID de base de datos fijo
+                 (id=1 y id=17), que fallaba en instancias donde esos IDs
+                 no correspondian a un diario de ventas ni a una cuenta de
+                 ingresos validos. Se hacen visibles y editables mientras
+                 el contrato esta en borrador, para poder corregirlos por
+                 contrato si el default no aplica. -->
+            <xpath expr="//field[@name='journal_type']" position="attributes">
+                <attribute name="invisible">0</attribute>
+                <attribute name="readonly">state != 'draft'</attribute>
+            </xpath>
+            <xpath expr="//field[@name='account_type']" position="attributes">
+                <attribute name="invisible">0</attribute>
+                <attribute name="readonly">state != 'draft'</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>
