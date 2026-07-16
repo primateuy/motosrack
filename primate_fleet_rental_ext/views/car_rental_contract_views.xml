@@ -21,6 +21,16 @@
                 <attribute name="invisible">0</attribute>
                 <attribute name="readonly">state != 'draft'</attribute>
             </xpath>
+            <!-- FIX [#002]: el form original define el dominio de
+                 vehicle_id hardcodeado en el XML (y el dominio a nivel de
+                 vista pisa cualquier dominio del modelo), exigiendo
+                 rental_check_availability = True ademas de que el vehiculo
+                 no este inactivo, lo que ocultaba vehiculos validos del
+                 selector. Se reemplaza el atributo para mantener solo el
+                 filtro por estado distinto de 'Inactive'. -->
+            <xpath expr="//field[@name='vehicle_id']" position="attributes">
+                <attribute name="domain">[('state_id.name', '!=', 'Inactive')]</attribute>
+            </xpath>
         </field>
     </record>
 </odoo>

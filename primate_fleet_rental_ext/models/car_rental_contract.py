@@ -31,8 +31,11 @@ class CarRentalContract(models.Model):
 	# FIX [#002]: el dominio original de vehicle_id exigía
 	# rental_check_availability = True además de que el vehículo no
 	# estuviera inactivo, lo que ocultaba vehículos válidos del selector.
-	# Se quita esa primera condición y se mantiene solo el filtro por
-	# estado distinto de 'Inactive'.
+	# OJO: el dominio efectivo está hardcodeado en el atributo domain del
+	# form original de fleet_rental (que pisa al del modelo), por lo que
+	# el fix real está en views/car_rental_contract_views.xml. Este
+	# override a nivel de modelo se deja como respaldo para cualquier
+	# otra vista o selector que no redefina el dominio.
 	vehicle_id = fields.Many2one(
 		domain="[('state_id.name', '!=', 'Inactive')]",
 	)
