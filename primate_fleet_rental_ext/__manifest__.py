@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
 	'name': 'Primate Fleet Rental Extension',
-	'version': '19.0.1.0.0',
+	'version': '19.0.1.1.0',
 	'author': 'PrimateUY',
 	'website': 'https://primate.uy',
 	'category': 'Fleet',
@@ -21,6 +21,8 @@
 		  cuenta de ingresos), filtradas por la compañía activa.
 		- Exposición de ambos campos en el formulario del contrato para que
 		  puedan ajustarse manualmente por contrato si hace falta.
+		- Dominio de vehicle_id sin la condición rental_check_availability,
+		  manteniendo solo el filtro de vehículos no inactivos.
 		""",
 	'depends': ['fleet_rental', 'account'],
 	'data': [

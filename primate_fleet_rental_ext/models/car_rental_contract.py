@@ -28,6 +28,15 @@ class CarRentalContract(models.Model):
 		default=lambda self: self._get_default_rental_income_account(),
 	)
 
+	# FIX [#002]: el dominio original de vehicle_id exigía
+	# rental_check_availability = True además de que el vehículo no
+	# estuviera inactivo, lo que ocultaba vehículos válidos del selector.
+	# Se quita esa primera condición y se mantiene solo el filtro por
+	# estado distinto de 'Inactive'.
+	vehicle_id = fields.Many2one(
+		domain="[('state_id.name', '!=', 'Inactive')]",
+	)
+
 	def _get_default_rental_sale_journal(self):
 		"""Busca el diario de ventas por defecto de la compañía activa.
 
