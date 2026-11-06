@@ -16,6 +16,10 @@ class TestBooking(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        # The reasons returned by _get_availability are translatable, and
+        # this database runs in pt_BR. The assertions below are about the
+        # English source strings, so the tests speak English.
+        cls.env = cls.env(context=dict(cls.env.context, lang="en_US"))
         cls.Booking = cls.env["primate.booking"]
         cls.Block = cls.env["primate.booking.block"]
         cls.resource = cls.env["resource.resource"].create(

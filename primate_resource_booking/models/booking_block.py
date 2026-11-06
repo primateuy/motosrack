@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+from datetime import timedelta
+
 from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
 
@@ -120,9 +122,11 @@ class BookingBlock(models.Model):
         now = fields.Datetime.now()
         for block in self:
             if not block.stop:
-                # An open block created in the future would end before it
-                # starts; keep the record consistent in that corner case.
-                block.stop = max(now, block.start)
+                # A block that starts in the future cannot end now, and it
+                # cannot end exactly when it starts either: the end has to be
+                # strictly later than the start. Such a block is closed with
+                # the shortest possible span instead.
+                block.stop = max(now, block.start + timedelta(seconds=1))
         return True
 
     # ------------------------------------------------------------------
