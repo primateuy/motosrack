@@ -21,6 +21,9 @@
             Command.link(ref('stock.group_stock_user')),
         ]"/>
         <field name="comment">Runs the shop: agenda, rentals, deliveries, returns and collections.</field>
+        <!-- Without this the menu is hidden right after installing, because
+             being an administrator does not grant the group by itself. -->
+        <field name="user_ids" eval="[Command.link(ref('base.user_admin'))]"/>
     </record>
 
     <!-- The rental prices are pricelist tiers and the rental unit is the
