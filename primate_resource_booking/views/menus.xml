@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <menuitem id="menu_booking_root"
+              name="Bookings"
+              sequence="70"
+              groups="group_booking_user"/>
+
+    <menuitem id="menu_booking_agenda"
+              name="Agenda"
+              parent="menu_booking_root"
+              action="action_booking"
+              sequence="10"/>
+
+    <menuitem id="menu_booking_today"
+              name="Today"
+              parent="menu_booking_root"
+              action="action_booking_today"
+              sequence="20"/>
+
+    <menuitem id="menu_booking_configuration"
+              name="Configuration"
+              parent="menu_booking_root"
+              sequence="90"
+              groups="group_booking_manager"/>
+
+    <menuitem id="menu_booking_block"
+              name="Blocks"
+              parent="menu_booking_configuration"
+              action="action_booking_block"
+              sequence="10"/>
+
+    <menuitem id="menu_booking_block_reason"
+              name="Block Reasons"
+              parent="menu_booking_configuration"
+              action="action_booking_block_reason"
+              sequence="20"/>
+
+</odoo>

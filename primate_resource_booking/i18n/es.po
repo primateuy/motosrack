@@ -1,0 +1,842 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* primate_resource_booking
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-06 12:55+0000\n"
+"PO-Revision-Date: 2026-11-06 12:55+0000\n"
+"Last-Translator: Primate\n"
+"Language-Team: Spanish\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: primate_resource_booking
+#. odoo-python
+#: code:addons/primate_resource_booking/models/booking.py:0
+msgid " (open)"
+msgstr " (abierto)"
+
+#. module: primate_resource_booking
+#. odoo-python
+#: code:addons/primate_resource_booking/models/booking.py:0
+msgid " by %s"
+msgstr " de %s"
+
+#. module: primate_resource_booking
+#. odoo-python
+#: code:addons/primate_resource_booking/models/booking.py:0
+msgid " to %s"
+msgstr " hasta %s"
+
+#. module: primate_resource_booking
+#. odoo-python
+#: code:addons/primate_resource_booking/models/booking.py:0
+msgid "%(label)s from %(start)s to %(stop)s%(who)s"
+msgstr "%(label)s del %(start)s al %(stop)s%(who)s"
+
+#. module: primate_resource_booking
+#. odoo-python
+#: code:addons/primate_resource_booking/models/booking.py:0
+msgid "%(reason)s from %(start)s%(until)s"
+msgstr "%(reason)s desde %(start)s%(until)s"
+
+#. module: primate_resource_booking
+#. odoo-python
+#: code:addons/primate_resource_booking/models/booking.py:0
+msgid ""
+"%(resource)s is already booked during that period:\n"
+"%(details)s"
+msgstr ""
+"%(resource)s ya está reservado en ese período:\n"
+"%(details)s"
+
+#. module: primate_resource_booking
+#. odoo-python
+#: code:addons/primate_resource_booking/models/booking.py:0
+msgid ""
+"%(resource)s is not available from %(start)s to %(stop)s:\n"
+"%(details)s"
+msgstr ""
+"%(resource)s no está disponible del %(start)s al %(stop)s:\n"
+"%(details)s"
+
+#. module: primate_resource_booking
+#: model_terms:ir.ui.view,arch_db:primate_resource_booking.view_booking_kanban
+msgid "<i class=\"fa fa-exclamation-triangle me-1\"/>Overdue"
+msgstr "<i class=\"fa fa-exclamation-triangle me-1\"/>Atrasada"
+
+#. module: primate_resource_booking
+#: model_terms:ir.ui.view,arch_db:primate_resource_booking.view_booking_kanban
+msgid "<i class=\"fa fa-sign-in me-1\" title=\"End\"/>"
+msgstr "<i class=\"fa fa-sign-in me-1\" title=\"Fin\"/>"
+
+#. module: primate_resource_booking
+#: model_terms:ir.ui.view,arch_db:primate_resource_booking.view_booking_kanban
+msgid "<i class=\"fa fa-sign-out me-1\" title=\"Start\"/>"
+msgstr "<i class=\"fa fa-sign-out me-1\" title=\"Inicio\"/>"
+
+#. module: primate_resource_booking
+#: model_terms:ir.ui.view,arch_db:primate_resource_booking.view_booking_form
+msgid "<span class=\"o_stat_text\">Document</span>"
+msgstr "<span class=\"o_stat_text\">Documento</span>"
+
+#. module: primate_resource_booking
+#: model_terms:ir.ui.view,arch_db:primate_resource_booking.view_booking_form
+#: model_terms:ir.ui.view,arch_db:primate_resource_booking.view_booking_quick_form
+msgid ""
+"<strong>Careful:</strong> this period overlaps a block\n"
+"                        of the resource."
+msgstr ""
+"<strong>Ojo:</strong> este período se solapa con un bloqueo\n"
+"                        del recurso."
+
+#. module: primate_resource_booking
+#: model_terms:ir.actions.act_window,help:primate_resource_booking.action_booking_block
+msgid ""
+"A block keeps a resource out of service for a reason other than\n"
+"                a booking. Leave the end date empty for an open block."
+msgstr ""
+"Un bloqueo deja un recurso fuera de servicio por un motivo que no es\n"
+"                una reserva. Dejá la fecha de fin vacía para un bloqueo abierto."
+
+#. module: primate_resource_booking
+#: model:ir.model.fields,field_description:primate_resource_booking.field_primate_booking__message_needaction
+msgid "Action Needed"
+msgstr "Requiere acción"
+
+#. module: primate_resource_booking
+#: model:ir.model.fields,field_description:primate_resource_booking.field_primate_booking_block_reason__active
+msgid "Active"
+msgstr "Activo"
+
+#. module: primate_resource_booking
+#: model:ir.model.fields,field_description:primate_resource_booking.field_primate_booking__activity_ids
+msgid "Activities"
+msgstr "Actividades"
+
+#. module: primate_resource_booking
+#: model:ir.model.fields,field_description:primate_resource_booking.field_primate_booking__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr "Decoración de excepción de actividad"
+
+#. module: primate_resource_booking
+#: model:ir.model.fields,field_description:primate_resource_booking.field_primate_booking__activity_state
+msgid "Activity State"
+msgstr "Estado de la actividad"
+
+#. module: primate_resource_booking
+#: model:ir.model.fields,field_description:primate_resource_booking.field_primate_booking__activity_type_icon
+msgid "Activity Type Icon"
+msgstr "Icono del tipo de actividad"
+
+#. module: primate_resource_booking
+#: model:ir.actions.act_window,name:primate_resource_booking.action_booking
+#: model:ir.ui.menu,name:primate_resource_booking.menu_booking_agenda
+msgid "Agenda"
+msgstr "Agenda"
+
+#. module: primate_resource_booking
+#: model:ir.model.fields,help:primate_resource_booking.field_primate_booking_block__is_open
+msgid "An open block has no end date and keeps blocking the resource."
+msgstr ""
+"Un bloqueo abierto no tiene fecha de fin y mantiene el recurso bloqueado."
+
+#. module: primate_resource_booking
+#: model_terms:ir.ui.view,arch_db:primate_resource_booking.view_booking_quick_form
+msgid "Anything worth remembering"
+msgstr "Algo que convenga recordar"
+
+#. module: primate_resource_booking
+#: model_terms:ir.ui.view,arch_db:primate_resource_booking.view_booking_block_reason_form
+msgid "Archived"
+msgstr "Archivado"
+
+#. module: primate_resource_booking
+#: model:ir.model.fields,field_description:primate_resource_booking.field_primate_booking__message_attachment_count
+msgid "Attachment Count"
+msgstr "Cantidad de adjuntos"
+
+#. module: primate_resource_booking
+#: model:ir.model.fields,field_description:primate_resource_booking.field_resource_resource__is_available_now
+msgid "Available Now"
+msgstr "Disponible ahora"
+
+#. module: primate_resource_booking
+#: model_terms:ir.ui.view,arch_db:primate_resource_booking.view_booking_form
+msgid "Back to Draft"
+msgstr "Volver a borrador"
+
+#. module: primate_resource_booking
+#: model_terms:ir.ui.view,arch_db:primate_resource_booking.view_booking_block_form
+msgid "Block"
+msgstr "Bloqueo"
+
+#. module: primate_resource_booking
+#: model_terms:ir.ui.view,arch_db:primate_resource_booking.view_booking_block_reason_form
+msgid "Block Reason"
+msgstr "Motivo de bloqueo"
+
+#. module: primate_resource_booking
+#: model:ir.actions.act_window,name:primate_resource_booking.action_booking_block_reason
+#: model:ir.ui.menu,name:primate_resource_booking.menu_booking_block_reason
+#: model_terms:ir.ui.view,arch_db:primate_resource_booking.view_booking_block_reason_list
+msgid "Block Reasons"
+msgstr "Motivos de bloqueo"
+
+#. module: primate_resource_booking
+#: model_terms:ir.actions.act_window,help:primate_resource_booking.action_booking_block
+msgid "Block a resource"
+msgstr "Bloquear un recurso"
+
+#. module: primate_resource_booking
+#: model_terms:ir.ui.view,arch_db:primate_resource_booking.view_booking_block_search
+msgid "Blocking"
+msgstr "Bloquea"
+
+#. module: primate_resource_booking
+#: model:ir.actions.act_window,name:primate_resource_booking.action_booking_block
+#: model:ir.model.fields,field_description:primate_resource_booking.field_resource_resource__booking_block_ids
+#: model:ir.ui.menu,name:primate_resource_booking.menu_booking_block
+#: model_terms:ir.ui.view,arch_db:primate_resource_booking.view_booking_block_list
+#: model_terms:ir.ui.view,arch_db:primate_resource_booking.view_booking_block_search
+msgid "Blocks"
+msgstr "Bloqueos"
+
+#. module: primate_resource_booking
+#: model:ir.model.fields,field_description:primate_resource_booking.field_primate_booking_block__blocks_availability
+#: model:ir.model.fields,field_description:primate_resource_booking.field_primate_booking_block_reason__blocks_availability
+msgid "Blocks Availability"
+msgstr "Bloquea la disponibilidad"
+
+#. module: primate_resource_booking
+#: model:ir.model.fields,help:primate_resource_booking.field_primate_booking__conflicting_block_ids
+msgid ""
+"Blocks overlapping this booking. They do not stop the booking, they warn "
+"about it."
+msgstr "Bloqueos que se solapan con esta reserva. No la impiden, avisan."
+
+#. module: primate_resource_booking
+#: model_terms:ir.actions.act_window,help:primate_resource_booking.action_booking
+msgid "Book a resource"
+msgstr "Reservar un recurso"
+
+#. module: primate_resource_booking
+#: model_terms:ir.ui.view,arch_db:primate_resource_booking.view_booking_form
+msgid "Booking"
+msgstr "Reserva"
+
+#. module: primate_resource_booking
+#: model:ir.model.fields,field_description:primate_resource_booking.field_resource_resource__booking_ids
+#: model:ir.ui.menu,name:primate_resource_booking.menu_booking_root
+#: model_terms:ir.ui.view,arch_db:primate_resource_booking.view_booking_calendar
+#: model_terms:ir.ui.view,arch_db:primate_resource_booking.view_booking_list
+#: model_terms:ir.ui.view,arch_db:primate_resource_booking.view_booking_search
+msgid "Bookings"
+msgstr "Reservas"
+
+#. module: primate_resource_booking
+#: model:ir.model.fields,field_description:primate_resource_booking.field_resource_resource__booking_count
+msgid "Bookings Count"
+msgstr "Cantidad de reservas"
+
+#. module: primate_resource_booking
+#: model:res.groups,comment:primate_resource_booking.group_booking_manager
+msgid "Can additionally manage blocks and block reasons."
+msgstr "Además puede gestionar bloqueos y motivos de bloqueo."
+
+#. module: primate_resource_booking
+#: model:res.groups,comment:primate_resource_booking.group_booking_user
+msgid "Can read the agenda and create or edit bookings."
+msgstr "Puede ver la agenda y crear o editar reservas."
+
+#. module: primate_resource_booking
+#: model_terms:ir.ui.view,arch_db:primate_resource_booking.view_booking_form
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: primate_resource_booking
+#: model:ir.model.fields.selection,name:primate_resource_booking.selection__primate_booking__state__cancelled
+msgid "Cancelled"
+msgstr "Cancelada"
+
+#. module: primate_resource_booking
+#: model_terms:ir.ui.view,arch_db:primate_resource_booking.view_booking_block_list
+#: model_terms:ir.ui.view,arch_db:primate_resource_booking.view_booking_form
+msgid "Close"
+msgstr "Cerrar"
+
+#. module: primate_resource_booking
+#: model_terms:ir.ui.view,arch_db:primate_resource_booking.view_booking_block_form
+msgid "Close Block"
+msgstr "Cerrar bloqueo"
+
+#. module: primate_resource_booking
+#: model:ir.model.fields,field_description:primate_resource_booking.field_primate_booking_block_reason__code
+msgid "Code"
+msgstr "Código"
+
+#. module: primate_resource_booking
+#: model:ir.model.fields,field_description:primate_resource_booking.field_primate_booking__color
+#: model:ir.model.fields,field_description:primate_resource_booking.field_primate_booking_block__color
+#: model:ir.model.fields,field_description:primate_resource_booking.field_primate_booking_block_reason__color
+msgid "Color Index"
+msgstr "Índice de color"
+
+#. module: primate_resource_booking
+#: model:ir.model.fields,field_description:primate_resource_booking.field_primate_booking__company_id
+#: model:ir.model.fields,field_description:primate_resource_booking.field_primate_booking_block__company_id
+msgid "Company"
+msgstr "Compañía"
+
+#. module: primate_resource_booking
+#: model:ir.ui.menu,name:primate_resource_booking.menu_booking_configuration
+msgid "Configuration"
+msgstr "Configuración"
+
+#. module: primate_resource_booking
+#: model_terms:ir.ui.view,arch_db:primate_resource_booking.view_booking_form
+msgid "Confirm"
+msgstr "Confirmar"
+
+#. module: primate_resource_booking
+#: model:ir.model.fields.selection,name:primate_resource_booking.selection__primate_booking__state__confirmed
+#: model_terms:ir.ui.view,arch_db:primate_resource_booking.view_booking_search
+msgid "Confirmed"
+msgstr "Confirmada"
+
+#. module: primate_resource_booking
+#: model_terms:ir.actions.act_window,help:primate_resource_booking.action_booking_block_reason
+msgid "Create a block reason"
+msgstr "Crear un motivo de bloqueo"
+
+#. module: primate_resource_booking
+#: model:ir.model.fields,field_description:primate_resource_booking.field_primate_booking__create_uid
+#: model:ir.model.fields,field_description:primate_resource_booking.field_primate_booking_block__create_uid
+#: model:ir.model.fields,field_description:primate_resource_booking.field_primate_booking_block_reason__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: primate_resource_booking
+#: model:ir.model.fields,field_description:primate_resource_booking.field_primate_booking__create_date
+#: model:ir.model.fields,field_description:primate_resource_booking.field_primate_booking_block__create_date
+#: model:ir.model.fields,field_description:primate_resource_booking.field_primate_booking_block_reason__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: primate_resource_booking
+#: model_terms:ir.ui.view,arch_db:primate_resource_booking.view_booking_block_search
+msgid "Current"
+msgstr "Vigentes"
+
+#. module: primate_resource_booking
+#: model:ir.model.fields,field_description:primate_resource_booking.field_primate_booking__partner_id
+#: model_terms:ir.ui.view,arch_db:primate_resource_booking.view_booking_search
+msgid "Customer"
+msgstr "Cliente"
+
+#. module: primate_resource_booking
+#: model:ir.model.fields,field_description:primate_resource_booking.field_primate_booking_block__name
+#: model_terms:ir.ui.view,arch_db:primate_resource_booking.view_booking_block_form
+msgid "Description"
+msgstr "Descripción"
+
+#. module: primate_resource_booking
+#: model:ir.model.fields,field_description:primate_resource_booking.field_primate_booking__display_name
+#: model:ir.model.fields,field_description:primate_resource_booking.field_primate_booking_block__display_name
+#: model:ir.model.fields,field_description:primate_resource_booking.field_primate_booking_block_reason__display_name
+#: model:ir.model.fields,field_description:primate_resource_booking.field_resource_resource__display_name
+msgid "Display Name"
+msgstr "Nombre mostrado"
+
+#. module: primate_resource_booking
+#: model:ir.model.fields,field_description:primate_resource_booking.field_primate_booking__res_id
+msgid "Document ID"
+msgstr "ID del documento"
+
+#. module: primate_resource_booking
+#: model:ir.model.fields,field_description:primate_resource_booking.field_primate_booking__res_model
+msgid "Document Model"
+msgstr "Modelo del documento"
+
+#. module: primate_resource_booking
+#: model:ir.model.fields.selection,name:primate_resource_booking.selection__primate_booking__state__done
+msgid "Done"
+msgstr "Finalizada"
+
+#. module: primate_resource_booking
+#: model:ir.model.fields.selection,name:primate_resource_booking.selection__primate_booking__state__draft
+#: model_terms:ir.ui.view,arch_db:primate_resource_booking.view_booking_search
+msgid "Draft"
+msgstr "Borrador"
+
+#. module: primate_resource_booking
+#: model_terms:ir.actions.act_window,help:primate_resource_booking.action_booking
+msgid ""
+"Drag a range on the timeline to create a booking. A draft\n"
+"                booking blocks nothing: the resource is only held once the\n"
+"                booking is confirmed."
+msgstr ""
+"Marcá un rango en la línea de tiempo para crear una reserva. Una\n"
+"                reserva en borrador no bloquea nada: el recurso recién queda\n"
+"                tomado cuando la reserva se confirma."
+
+#. module: primate_resource_booking
+#: model:ir.model.fields,field_description:primate_resource_booking.field_primate_booking__duration_hours
+msgid "Duration (hours)"
+msgstr "Duración (horas)"
+
+#. module: primate_resource_booking
+#: model:ir.model.fields,field_description:primate_resource_booking.field_primate_booking__stop
+#: model:ir.model.fields,field_description:primate_resource_booking.field_primate_booking_block__stop
+msgid "End"
+msgstr "Fin"
+
+#. module: primate_resource_booking
+#: model_terms:ir.ui.view,arch_db:primate_resource_booking.view_booking_search
+msgid "Ending Today"
+msgstr "Terminan hoy"
+
+#. module: primate_resource_booking
+#: model:ir.model.fields,field_description:primate_resource_booking.field_primate_booking__is_return_today
+msgid "Ends Today"
+msgstr "Termina hoy"
+
+#. module: primate_resource_booking
+#: model:ir.model.fields,field_description:primate_resource_booking.field_primate_booking__message_follower_ids
+msgid "Followers"
+msgstr "Seguidores"
+
+#. module: primate_resource_booking
+#: model:ir.model.fields,field_description:primate_resource_booking.field_primate_booking__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "Seguidores (contactos)"
+
+#. module: primate_resource_booking
+#: model:ir.model.fields,help:primate_resource_booking.field_primate_booking__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr "Icono de Font Awesome, por ejemplo fa-tasks"
+
+#. module: primate_resource_booking
+#: model:ir.model.fields,field_description:primate_resource_booking.field_primate_booking__has_message
+msgid "Has Message"
+msgstr "Tiene mensajes"
+
+#. module: primate_resource_booking
+#: model:ir.model.fields,field_description:primate_resource_booking.field_primate_booking__blocks_resource
+msgid "Holds the Resource"
+msgstr "Retiene el recurso"
+
+#. module: primate_resource_booking
+#: model:ir.model.fields,field_description:primate_resource_booking.field_primate_booking__id
+#: model:ir.model.fields,field_description:primate_resource_booking.field_primate_booking_block__id
+#: model:ir.model.fields,field_description:primate_resource_booking.field_primate_booking_block_reason__id
+#: model:ir.model.fields,field_description:primate_resource_booking.field_resource_resource__id
+msgid "ID"
+msgstr "ID"
+
+#. module: primate_resource_booking
+#: model:ir.model.fields,field_description:primate_resource_booking.field_primate_booking__activity_exception_icon
+msgid "Icon"
+msgstr "Icono"
+
+#. module: primate_resource_booking
+#: model:ir.model.fields,help:primate_resource_booking.field_primate_booking__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr "Icono para indicar una actividad excepcional."
+
+#. module: primate_resource_booking
+#: model:ir.model.fields,help:primate_resource_booking.field_primate_booking__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "Si está marcado, hay mensajes nuevos que requieren su atención."
+
+#. module: primate_resource_booking
+#: model:ir.model.fields,help:primate_resource_booking.field_primate_booking__message_has_error
+msgid "If checked, some messages have a delivery error."
+msgstr "Si está marcado, algunos mensajes tienen un error de entrega."
+
+#. module: primate_resource_booking
+#: model:ir.model.fields.selection,name:primate_resource_booking.selection__primate_booking__state__in_use
+#: model_terms:ir.ui.view,arch_db:primate_resource_booking.view_booking_search
+msgid "In Use"
+msgstr "En uso"
+
+#. module: primate_resource_booking
+#. odoo-python
+#: code:addons/primate_resource_booking/models/booking.py:0
+msgid "In use"
+msgstr "En uso"
+
+#. module: primate_resource_booking
+#: model:ir.model.fields,field_description:primate_resource_booking.field_primate_booking__message_is_follower
+msgid "Is Follower"
+msgstr "Es seguidor"
+
+#. module: primate_resource_booking
+#: model:ir.model.fields,help:primate_resource_booking.field_primate_booking__name
+msgid "Label shown on the timeline. Computed by default, editable."
+msgstr ""
+"Etiqueta que se muestra en la línea de tiempo. Se calcula sola, pero es "
+"editable."
+
+#. module: primate_resource_booking
+#: model:ir.model.fields,field_description:primate_resource_booking.field_primate_booking__write_uid
+#: model:ir.model.fields,field_description:primate_resource_booking.field_primate_booking_block__write_uid
+#: model:ir.model.fields,field_description:primate_resource_booking.field_primate_booking_block_reason__write_uid
+msgid "Last Updated by"
+msgstr "Última actualización por"
+
+#. module: primate_resource_booking
+#: model:ir.model.fields,field_description:primate_resource_booking.field_primate_booking__write_date
+#: model:ir.model.fields,field_description:primate_resource_booking.field_primate_booking_block__write_date
+#: model:ir.model.fields,field_description:primate_resource_booking.field_primate_booking_block_reason__write_date
+msgid "Last Updated on"
+msgstr "Última actualización el"
+
+#. module: primate_resource_booking
+#: model_terms:ir.ui.view,arch_db:primate_resource_booking.view_booking_block_form
+msgid "Leave empty for an open block"
+msgstr "Dejar vacío para un bloqueo abierto"
+
+#. module: primate_resource_booking
+#: model:ir.model.fields,help:primate_resource_booking.field_primate_booking_block__stop
+msgid ""
+"Leave empty for an open block: the resource stays blocked until the block is"
+" closed."
+msgstr ""
+"Dejar vacío para un bloqueo abierto: el recurso queda bloqueado hasta que se"
+" cierre el bloqueo."
+
+#. module: primate_resource_booking
+#: model:primate.booking.block.reason,name:primate_resource_booking.block_reason_maintenance
+msgid "Maintenance"
+msgstr "Mantenimiento"
+
+#. module: primate_resource_booking
+#: model:res.groups,name:primate_resource_booking.group_booking_manager
+msgid "Manager"
+msgstr "Responsable"
+
+#. module: primate_resource_booking
+#: model:ir.model.fields,field_description:primate_resource_booking.field_primate_booking__message_has_error
+msgid "Message Delivery error"
+msgstr "Error de entrega del mensaje"
+
+#. module: primate_resource_booking
+#: model:ir.model.fields,field_description:primate_resource_booking.field_primate_booking__message_ids
+msgid "Messages"
+msgstr "Mensajes"
+
+#. module: primate_resource_booking
+#: model:ir.model.fields,field_description:primate_resource_booking.field_primate_booking__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr "Fecha límite de mi actividad"
+
+#. module: primate_resource_booking
+#: model_terms:ir.ui.view,arch_db:primate_resource_booking.view_booking_quick_form
+msgid "New Booking"
+msgstr "Nueva reserva"
+
+#. module: primate_resource_booking
+#: model:ir.model.fields,field_description:primate_resource_booking.field_primate_booking__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr "Fecha límite de la próxima actividad"
+
+#. module: primate_resource_booking
+#: model:ir.model.fields,field_description:primate_resource_booking.field_primate_booking__activity_summary
+msgid "Next Activity Summary"
+msgstr "Resumen de la próxima actividad"
+
+#. module: primate_resource_booking
+#: model:ir.model.fields,field_description:primate_resource_booking.field_primate_booking__activity_type_id
+msgid "Next Activity Type"
+msgstr "Tipo de la próxima actividad"
+
+#. module: primate_resource_booking
+#: model:primate.booking.block.reason,name:primate_resource_booking.block_reason_note
+msgid "Note"
+msgstr "Nota"
+
+#. module: primate_resource_booking
+#: model:ir.model.fields,field_description:primate_resource_booking.field_primate_booking__note
+#: model:ir.model.fields,field_description:primate_resource_booking.field_primate_booking_block__note
+#: model_terms:ir.ui.view,arch_db:primate_resource_booking.view_booking_block_form
+#: model_terms:ir.ui.view,arch_db:primate_resource_booking.view_booking_form
+#: model_terms:ir.ui.view,arch_db:primate_resource_booking.view_booking_quick_form
+msgid "Notes"
+msgstr "Notas"
+
+#. module: primate_resource_booking
+#: model_terms:ir.actions.act_window,help:primate_resource_booking.action_booking_today
+msgid "Nothing to do today"
+msgstr "Hoy no hay nada que hacer"
+
+#. module: primate_resource_booking
+#: model:ir.model.fields,field_description:primate_resource_booking.field_primate_booking__message_needaction_counter
+msgid "Number of Actions"
+msgstr "Cantidad de acciones"
+
+#. module: primate_resource_booking
+#: model:ir.model.fields,field_description:primate_resource_booking.field_primate_booking__message_has_error_counter
+msgid "Number of errors"
+msgstr "Cantidad de errores"
+
+#. module: primate_resource_booking
+#: model:ir.model.fields,help:primate_resource_booking.field_primate_booking__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr "Cantidad de mensajes que requieren acción"
+
+#. module: primate_resource_booking
+#: model:ir.model.fields,help:primate_resource_booking.field_primate_booking__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "Cantidad de mensajes con error de entrega"
+
+#. module: primate_resource_booking
+#: model_terms:ir.ui.view,arch_db:primate_resource_booking.view_booking_block_search
+#: model_terms:ir.ui.view,arch_db:primate_resource_booking.view_booking_search
+msgid "Open"
+msgstr "Abiertos"
+
+#. module: primate_resource_booking
+#: model:ir.model.fields,field_description:primate_resource_booking.field_primate_booking_block__is_open
+msgid "Open Block"
+msgstr "Bloqueo abierto"
+
+#. module: primate_resource_booking
+#: model:ir.model.fields,field_description:primate_resource_booking.field_primate_booking__is_overdue
+#: model_terms:ir.ui.view,arch_db:primate_resource_booking.view_booking_search
+msgid "Overdue"
+msgstr "Atrasada"
+
+#. module: primate_resource_booking
+#: model:ir.model.fields,field_description:primate_resource_booking.field_primate_booking__conflicting_block_ids
+msgid "Overlapping Blocks"
+msgstr "Bloqueos solapados"
+
+#. module: primate_resource_booking
+#: model:primate.booking.block.reason,name:primate_resource_booking.block_reason_review
+msgid "Pending review"
+msgstr "Pendiente de revisión"
+
+#. module: primate_resource_booking
+#: model:ir.model.fields,field_description:primate_resource_booking.field_primate_booking_block__reason_id
+#: model:ir.model.fields,field_description:primate_resource_booking.field_primate_booking_block_reason__name
+#: model_terms:ir.ui.view,arch_db:primate_resource_booking.view_booking_block_search
+msgid "Reason"
+msgstr "Motivo"
+
+#. module: primate_resource_booking
+#: model_terms:ir.actions.act_window,help:primate_resource_booking.action_booking_block_reason
+msgid "Reasons explain why a resource is unavailable outside of a booking."
+msgstr ""
+"Los motivos explican por qué un recurso no está disponible más allá de una "
+"reserva."
+
+#. module: primate_resource_booking
+#: model:ir.model.fields,field_description:primate_resource_booking.field_primate_booking__name
+#: model_terms:ir.ui.view,arch_db:primate_resource_booking.view_booking_form
+msgid "Reference"
+msgstr "Referencia"
+
+#. module: primate_resource_booking
+#. odoo-python
+#: code:addons/primate_resource_booking/models/booking.py:0
+msgid "Reserved"
+msgstr "Reservada"
+
+#. module: primate_resource_booking
+#: model:ir.model.fields,field_description:primate_resource_booking.field_primate_booking__resource_id
+#: model:ir.model.fields,field_description:primate_resource_booking.field_primate_booking_block__resource_id
+#: model_terms:ir.ui.view,arch_db:primate_resource_booking.view_booking_block_search
+#: model_terms:ir.ui.view,arch_db:primate_resource_booking.view_booking_search
+msgid "Resource"
+msgstr "Recurso"
+
+#. module: primate_resource_booking
+#: model:ir.model,name:primate_resource_booking.model_primate_booking_block
+msgid "Resource Block"
+msgstr "Bloqueo de recurso"
+
+#. module: primate_resource_booking
+#: model:ir.model,name:primate_resource_booking.model_primate_booking_block_reason
+msgid "Resource Block Reason"
+msgstr "Motivo de bloqueo de recurso"
+
+#. module: primate_resource_booking
+#: model:ir.model,name:primate_resource_booking.model_primate_booking
+#: model:res.groups.privilege,name:primate_resource_booking.res_groups_privilege_booking
+msgid "Resource Booking"
+msgstr "Reserva de recurso"
+
+#. module: primate_resource_booking
+#: model:ir.model,name:primate_resource_booking.model_resource_resource
+msgid "Resources"
+msgstr "Recursos"
+
+#. module: primate_resource_booking
+#: model:ir.model.fields,field_description:primate_resource_booking.field_primate_booking__activity_user_id
+msgid "Responsible User"
+msgstr "Usuario responsable"
+
+#. module: primate_resource_booking
+#: model:ir.model.fields,field_description:primate_resource_booking.field_primate_booking_block_reason__sequence
+msgid "Sequence"
+msgstr "Secuencia"
+
+#. module: primate_resource_booking
+#: model:ir.model.fields,field_description:primate_resource_booking.field_primate_booking__start
+#: model:ir.model.fields,field_description:primate_resource_booking.field_primate_booking_block__start
+#: model_terms:ir.ui.view,arch_db:primate_resource_booking.view_booking_block_search
+#: model_terms:ir.ui.view,arch_db:primate_resource_booking.view_booking_form
+#: model_terms:ir.ui.view,arch_db:primate_resource_booking.view_booking_search
+msgid "Start"
+msgstr "Inicio"
+
+#. module: primate_resource_booking
+#: model_terms:ir.ui.view,arch_db:primate_resource_booking.view_booking_search
+msgid "Starting Today"
+msgstr "Empiezan hoy"
+
+#. module: primate_resource_booking
+#: model:ir.model.fields,field_description:primate_resource_booking.field_primate_booking__is_delivery_today
+msgid "Starts Today"
+msgstr "Empieza hoy"
+
+#. module: primate_resource_booking
+#: model:ir.model.fields,field_description:primate_resource_booking.field_primate_booking__state
+#: model_terms:ir.ui.view,arch_db:primate_resource_booking.view_booking_search
+msgid "Status"
+msgstr "Estado"
+
+#. module: primate_resource_booking
+#: model:ir.model.fields,help:primate_resource_booking.field_primate_booking__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+"Estado según las actividades\n"
+"Atrasada: la fecha límite ya pasó\n"
+"Hoy: la actividad es de hoy\n"
+"Planificada: actividades futuras."
+
+#. module: primate_resource_booking
+#: model:ir.model.fields,help:primate_resource_booking.field_primate_booking_block_reason__code
+msgid "Technical identifier, meant to be looked up from code."
+msgstr "Identificador técnico, pensado para buscarlo desde el código."
+
+#. module: primate_resource_booking
+#: model:ir.model.fields,help:primate_resource_booking.field_primate_booking__res_id
+msgid "Technical: id of the vertical document backing this booking."
+msgstr "Técnico: id del documento del vertical que respalda esta reserva."
+
+#. module: primate_resource_booking
+#: model:ir.model.fields,help:primate_resource_booking.field_primate_booking__res_model
+msgid "Technical: model of the vertical document backing this booking."
+msgstr "Técnico: modelo del documento del vertical que respalda esta reserva."
+
+#. module: primate_resource_booking
+#: model:ir.model.fields,help:primate_resource_booking.field_primate_booking__blocks_resource
+msgid "Technical: whether this booking currently holds its resource."
+msgstr "Técnico: indica si esta reserva está reteniendo su recurso."
+
+#. module: primate_resource_booking
+#: model:ir.model.fields,help:primate_resource_booking.field_primate_booking__is_return_today
+msgid "The booking ends today in the user's timezone."
+msgstr "La reserva termina hoy en la zona horaria del usuario."
+
+#. module: primate_resource_booking
+#: model:ir.model.fields,help:primate_resource_booking.field_primate_booking__is_overdue
+msgid "The booking is still in use although its end has passed."
+msgstr "La reserva sigue en uso aunque su fin ya pasó."
+
+#. module: primate_resource_booking
+#: model:ir.model.fields,help:primate_resource_booking.field_primate_booking__is_delivery_today
+msgid "The booking starts today in the user's timezone."
+msgstr "La reserva empieza hoy en la zona horaria del usuario."
+
+#. module: primate_resource_booking
+#: model:ir.model.constraint,message:primate_resource_booking.constraint_primate_booking_block_reason_code_uniq
+msgid "The code of a block reason must be unique."
+msgstr "El código de un motivo de bloqueo tiene que ser único."
+
+#. module: primate_resource_booking
+#. odoo-python
+#: code:addons/primate_resource_booking/models/booking_block.py:0
+msgid "The end of a block must be later than its start."
+msgstr "El fin de un bloqueo tiene que ser posterior a su inicio."
+
+#. module: primate_resource_booking
+#. odoo-python
+#: code:addons/primate_resource_booking/models/booking.py:0
+msgid "The end of a booking must be later than its start."
+msgstr "El fin de una reserva tiene que ser posterior a su inicio."
+
+#. module: primate_resource_booking
+#: model:ir.model.constraint,message:primate_resource_booking.constraint_primate_booking_no_overlap
+msgid "The resource is already taken during that period."
+msgstr "El recurso ya está tomado en ese período."
+
+#. module: primate_resource_booking
+#. odoo-python
+#: code:addons/primate_resource_booking/models/booking.py:0
+msgid "This booking is not linked to any document."
+msgstr "Esta reserva no está vinculada a ningún documento."
+
+#. module: primate_resource_booking
+#: model:ir.actions.act_window,name:primate_resource_booking.action_booking_today
+#: model:ir.ui.menu,name:primate_resource_booking.menu_booking_today
+#: model_terms:ir.ui.view,arch_db:primate_resource_booking.view_booking_search
+msgid "Today"
+msgstr "Hoy"
+
+#. module: primate_resource_booking
+#: model_terms:ir.actions.act_window,help:primate_resource_booking.action_booking_today
+msgid "Today's starts and ends show up here."
+msgstr "Acá aparecen las entregas y devoluciones de hoy."
+
+#. module: primate_resource_booking
+#: model:ir.model.fields,help:primate_resource_booking.field_primate_booking__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr "Tipo de la actividad excepcional del registro."
+
+#. module: primate_resource_booking
+#: model:ir.model.fields,field_description:primate_resource_booking.field_resource_resource__unavailability_reason
+msgid "Unavailability Reason"
+msgstr "Motivo de indisponibilidad"
+
+#. module: primate_resource_booking
+#: model:primate.booking.block.reason,name:primate_resource_booking.block_reason_unavailable
+msgid "Unavailable"
+msgstr "No disponible"
+
+#. module: primate_resource_booking
+#: model:res.groups,name:primate_resource_booking.group_booking_user
+msgid "User"
+msgstr "Usuario"
+
+#. module: primate_resource_booking
+#: model_terms:ir.ui.view,arch_db:primate_resource_booking.view_booking_block_form
+msgid "What happened?"
+msgstr "¿Qué pasó?"
+
+#. module: primate_resource_booking
+#: model:ir.model.fields,help:primate_resource_booking.field_primate_booking_block__blocks_availability
+#: model:ir.model.fields,help:primate_resource_booking.field_primate_booking_block_reason__blocks_availability
+msgid ""
+"When enabled, a block with this reason makes the resource unavailable. When "
+"disabled the block is only informative."
+msgstr ""
+"Si está activo, un bloqueo con este motivo deja el recurso no disponible. Si"
+" está inactivo, el bloqueo es solo informativo."
+
+#. module: primate_resource_booking
+#: model:ir.model.fields,help:primate_resource_booking.field_resource_resource__is_available_now
+msgid "Whether the resource is free at this very moment."
+msgstr "Indica si el recurso está libre en este preciso momento."

@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_primate_booking_user,primate.booking user,model_primate_booking,group_booking_user,1,1,1,0
+access_primate_booking_manager,primate.booking manager,model_primate_booking,group_booking_manager,1,1,1,1
+access_primate_booking_block_user,primate.booking.block user,model_primate_booking_block,group_booking_user,1,1,1,0
+access_primate_booking_block_manager,primate.booking.block manager,model_primate_booking_block,group_booking_manager,1,1,1,1
+access_primate_booking_block_reason_user,primate.booking.block.reason user,model_primate_booking_block_reason,group_booking_user,1,0,0,0
+access_primate_booking_block_reason_manager,primate.booking.block.reason manager,model_primate_booking_block_reason,group_booking_manager,1,1,1,1
