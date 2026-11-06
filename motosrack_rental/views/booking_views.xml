@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <!-- Short partner form: a walk-in customer only ever gives a name and
+         a phone number. -->
+    <record id="view_partner_quick_form" model="ir.ui.view">
+        <field name="name">res.partner.quick.form.motosrack</field>
+        <field name="model">res.partner</field>
+        <field name="priority">32</field>
+        <field name="arch" type="xml">
+            <form string="Customer">
+                <group>
+                    <field name="name" required="1" placeholder="Name"/>
+                    <field name="phone" placeholder="Phone"/>
+                    <field name="email" placeholder="Email"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <!-- ============================================================= -->
+    <!-- Quick create: what opens when a range is dragged on the       -->
+    <!-- agenda. This is the vertical's end of the extension point;    -->
+    <!-- the action below names it through form_view_ref.              -->
+    <!-- ============================================================= -->
+    <record id="view_rental_booking_quick_form" model="ir.ui.view">
+        <field name="name">primate.booking.quick.form.motosrack</field>
+        <field name="model">primate.booking</field>
+        <field name="priority">30</field>
+        <field name="arch" type="xml">
+            <form string="New booking">
+                <header>
+                    <button name="action_confirm" type="object" string="Confirm"
+                            class="btn-primary" invisible="state != 'draft'"
+                            help="Creates the order, confirms it, holds the bike, invoices and collects."/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,confirmed,in_use,done"/>
+                </header>
+                <sheet>
+                    <div class="alert alert-warning" role="alert"
+                         invisible="not conflicting_block_ids">
+                        <strong>Careful:</strong> the period overlaps a block of the bike.
+                        <field name="conflicting_block_ids" widget="many2many_tags"
+                               readonly="1" nolabel="1"/>
+                    </div>
+                    <group>
+                        <group string="Rental">
+                            <field name="vehicle_id" required="1"
+                                   options="{'no_create': True}"/>
+                            <field name="start" required="1"/>
+                            <field name="stop" required="1"/>
+                            <field name="rental_days"/>
+                        </group>
+                        <group string="Customer">
+                            <field name="partner_id" required="1"
+                                   context="{'form_view_ref': 'motosrack_rental.view_partner_quick_form'}"
+                                   options="{'always_reload': False}"/>
+                            <field name="pricelist_id" required="1"
+                                   options="{'no_create': True}"/>
+                            <field name="helmet_qty"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Price">
+                            <field name="manual_price"/>
+                            <field name="daily_price" readonly="not manual_price"/>
+                            <field name="amount_rental"/>
+                            <field name="currency_id" invisible="1"/>
+                            <button name="action_recompute_price" type="object"
+                                    string="Recompute price" class="btn-link"
+                                    invisible="not manual_price"/>
+                        </group>
+                        <group string="Collection">
+                            <field name="payment_state" widget="radio"/>
+                            <field name="deposit_amount"
+                                   invisible="payment_state != 'deposit'"
+                                   required="payment_state == 'deposit'"/>
+                            <field name="payment_journal_id"
+                                   invisible="payment_state == 'pending'"
+                                   required="payment_state != 'pending'"
+                                   options="{'no_create': True}"/>
+                        </group>
+                    </group>
+                    <group string="Notes">
+                        <field name="note" nolabel="1" placeholder="Anything worth remembering"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- ============================================================= -->
+    <!-- Full form                                                     -->
+    <!-- ============================================================= -->
+    <record id="view_rental_booking_form" model="ir.ui.view">
+        <field name="name">primate.booking.form.motosrack</field>
+        <field name="model">primate.booking</field>
+        <field name="inherit_id" ref="primate_resource_booking.view_booking_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//header/button[@name='action_start']" position="replace">
+                <button name="action_open_deliver" type="object" string="Deliver Bike"
+                        class="btn-primary" invisible="state != 'confirmed'"/>
+            </xpath>
+
+            <xpath expr="//header/button[@name='action_done']" position="replace">
+                <button name="action_open_return" type="object" string="Record the return"
+                        class="btn-primary" invisible="state != 'in_use'"/>
+            </xpath>
+
+            <xpath expr="//header/button[@name='action_cancel']" position="before">
+                <button name="action_open_extend" type="object" string="Extend"
+                        invisible="state not in ('confirmed', 'in_use')"/>
+                <button name="action_register_payment" type="object" string="Register Payment"
+                        invisible="state in ('draft', 'cancelled') or chain_amount_residual &lt;= 0"/>
+                <button name="action_release_vehicle" type="object" string="Release bike"
+                        invisible="not review_block_id or not review_block_id"/>
+            </xpath>
+
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="action_view_sale_order" type="object"
+                        class="oe_stat_button" icon="fa-file-text-o"
+                        invisible="not sale_order_id">
+                    <div class="o_stat_info">
+                        <span class="o_stat_text">Order</span>
+                    </div>
+                </button>
+            </xpath>
+
+            <xpath expr="//field[@name='resource_id']" position="before">
+                <field name="vehicle_id" options="{'no_create': True}"/>
+            </xpath>
+            <xpath expr="//field[@name='resource_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='partner_id']" position="attributes">
+                <attribute name="context">{'form_view_ref': 'motosrack_rental.view_partner_quick_form'}</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='duration_hours']" position="after">
+                <field name="rental_days"/>
+            </xpath>
+
+            <xpath expr="//group[@name='notes']" position="before">
+                <notebook>
+                    <page string="Price and collection" name="pricing">
+                        <group>
+                            <group string="Price">
+                                <field name="pricelist_id" options="{'no_create': True}"/>
+                                <field name="manual_price"/>
+                                <field name="daily_price" readonly="not manual_price"/>
+                                <field name="amount_rental"/>
+                                <button name="action_recompute_price" type="object"
+                                        string="Recompute price" class="btn-link"
+                                        invisible="not manual_price"/>
+                                <field name="currency_id" invisible="1"/>
+                            </group>
+                            <group string="Collection">
+                                <field name="payment_state"/>
+                                <field name="deposit_amount"
+                                       invisible="payment_state != 'deposit'"/>
+                                <field name="payment_journal_id"
+                                       options="{'no_create': True}"/>
+                                <field name="sale_order_id" readonly="1"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group string="This booking">
+                                <field name="amount_total"/>
+                                <field name="amount_paid"/>
+                                <field name="amount_residual"/>
+                            </group>
+                            <group string="Whole chain"
+                                   invisible="not is_extension and not child_booking_ids">
+                                <field name="chain_amount_total"/>
+                                <field name="chain_amount_paid"/>
+                                <field name="chain_amount_residual"/>
+                                <field name="chain_days"/>
+                            </group>
+                        </group>
+                        <field name="invoice_ids" readonly="1">
+                            <list>
+                                <field name="name"/>
+                                <field name="invoice_date"/>
+                                <field name="amount_total"/>
+                                <field name="amount_residual"/>
+                                <field name="payment_state"/>
+                                <field name="state"/>
+                            </list>
+                        </field>
+                    </page>
+                    <page string="Delivery and return" name="operations">
+                        <group>
+                            <group string="Delivery">
+                                <field name="delivery_datetime"/>
+                                <field name="helmets_delivered"/>
+                                <field name="odometer_out"/>
+                                <field name="fuel_out"/>
+                                <field name="delivery_note"/>
+                            </group>
+                            <group string="Return">
+                                <field name="return_datetime"/>
+                                <field name="helmets_returned"/>
+                                <field name="helmets_pending"/>
+                                <field name="odometer_in"/>
+                                <field name="fuel_in"/>
+                                <field name="return_note"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group string="Helmets">
+                                <field name="helmet_qty"/>
+                            </group>
+                            <group string="Review">
+                                <field name="review_block_id" readonly="1"/>
+                                <field name="late_hours" widget="float_time"/>
+                            </group>
+                        </group>
+                    </page>
+                    <page string="Extensions" name="chain"
+                          invisible="not is_extension and not child_booking_ids">
+                        <group>
+                            <field name="is_extension"/>
+                            <field name="parent_booking_id" readonly="1"/>
+                            <field name="root_booking_id" readonly="1"/>
+                            <field name="extension_criterion" readonly="1"/>
+                        </group>
+                        <field name="child_booking_ids" readonly="1">
+                            <list>
+                                <field name="name"/>
+                                <field name="start"/>
+                                <field name="stop"/>
+                                <field name="rental_days"/>
+                                <field name="amount_total"/>
+                                <field name="state"/>
+                            </list>
+                        </field>
+                    </page>
+                </notebook>
+            </xpath>
+
+        </field>
+    </record>
+
+    <!-- ============================================================= -->
+    <!-- List and search                                               -->
+    <!-- ============================================================= -->
+    <record id="view_rental_booking_list" model="ir.ui.view">
+        <field name="name">primate.booking.list.motosrack</field>
+        <field name="model">primate.booking</field>
+        <field name="inherit_id" ref="primate_resource_booking.view_booking_list"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='resource_id']" position="replace">
+                <field name="vehicle_id"/>
+            </xpath>
+            <xpath expr="//field[@name='duration_hours']" position="after">
+                <field name="rental_days" optional="show"/>
+                <field name="amount_total" optional="show"/>
+                <field name="amount_residual" optional="show"/>
+                <field name="currency_id" column_invisible="True"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_rental_booking_search" model="ir.ui.view">
+        <field name="name">primate.booking.search.motosrack</field>
+        <field name="model">primate.booking</field>
+        <field name="inherit_id" ref="primate_resource_booking.view_booking_search"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='resource_id']" position="after">
+                <field name="vehicle_id"/>
+            </xpath>
+            <xpath expr="//filter[@name='filter_overdue']" position="after">
+                <separator/>
+                <!-- amount_residual is computed on the fly and has no
+                     search method, so the filter goes through the invoices,
+                     which is what "owing something" actually means. -->
+                <filter name="filter_unpaid" string="With a balance"
+                        domain="[('sale_order_id.invoice_ids.payment_state', 'in', ('not_paid', 'partial'))]"/>
+            </xpath>
+            <xpath expr="//filter[@name='group_resource']" position="after">
+                <filter name="group_vehicle" string="Bike"
+                        context="{'group_by': 'vehicle_id'}"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- ============================================================= -->
+    <!-- Actions                                                       -->
+    <!-- ============================================================= -->
+    <record id="action_rental_booking" model="ir.actions.act_window">
+        <field name="name">Agenda</field>
+        <field name="res_model">primate.booking</field>
+        <field name="view_mode">timeline,list,calendar,kanban,form</field>
+        <field name="search_view_id" ref="primate_resource_booking.view_booking_search"/>
+        <field name="context">{'form_view_ref': 'motosrack_rental.view_rental_booking_quick_form'}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Drag a range on the agenda</p>
+            <p>
+                Dragging a range opens the quick-create form, and confirming
+                it raises the order with the tier rate, holds the bike, and
+                invoices and collects in one go.
+            </p>
+        </field>
+    </record>
+
+    <record id="action_rental_booking_today" model="ir.actions.act_window">
+        <field name="name">Day of operation</field>
+        <field name="res_model">primate.booking</field>
+        <field name="view_mode">kanban,list,form</field>
+        <field name="search_view_id" ref="primate_resource_booking.view_booking_search"/>
+        <field name="context">{'search_default_filter_today': 1, 'search_default_group_state': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">No deliveries or returns today</p>
+            <p>Today's deliveries and returns show up here.</p>
+        </field>
+    </record>
+
+    <!-- The generic agenda is replaced by the vertical one, so it does not
+         show up twice in the menu. -->
+    <record id="primate_resource_booking.menu_booking_root" model="ir.ui.menu">
+        <field name="active" eval="False"/>
+    </record>
+
+</odoo>

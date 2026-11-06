@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_booking_deliver_form" model="ir.ui.view">
+        <field name="name">motosrack.booking.deliver.form</field>
+        <field name="model">motosrack.booking.deliver</field>
+        <field name="arch" type="xml">
+            <form string="Deliver Bike">
+                <field name="booking_id" invisible="1"/>
+                <group>
+                    <group>
+                        <field name="vehicle_id"/>
+                        <field name="delivery_datetime"/>
+                        <field name="helmet_qty"/>
+                    </group>
+                    <group>
+                        <field name="odometer"/>
+                        <field name="fuel_level"/>
+                    </group>
+                </group>
+                <group string="Notes">
+                    <field name="note" nolabel="1"/>
+                </group>
+                <group string="Photos">
+                    <field name="attachment_ids" widget="many2many_binary" nolabel="1"/>
+                </group>
+                <footer>
+                    <button name="action_deliver" type="object" string="Deliver"
+                            class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

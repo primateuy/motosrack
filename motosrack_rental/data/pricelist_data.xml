@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data noupdate="1">
+
+        <!-- Rental tiers, as native pricelist rules with min_quantity.
+             The quantity of the rental line is the number of days, so the
+             rate of the tier that matches the total applies to every day:
+             8 days on the General list are 8 x 100, not 3 x 130 + 5 x 100. -->
+
+        <record id="pricelist_general" model="product.pricelist">
+            <field name="name">General</field>
+            <field name="currency_id" ref="base.BRL"/>
+            <field name="sequence">1</field>
+        </record>
+
+        <record id="pricelist_general_item_1" model="product.pricelist.item">
+            <field name="pricelist_id" ref="pricelist_general"/>
+            <field name="applied_on">1_product</field>
+            <field name="product_tmpl_id" ref="product_rental_moto"/>
+            <field name="min_quantity">1</field>
+            <field name="compute_price">fixed</field>
+            <field name="fixed_price">130.0</field>
+        </record>
+        <record id="pricelist_general_item_4" model="product.pricelist.item">
+            <field name="pricelist_id" ref="pricelist_general"/>
+            <field name="applied_on">1_product</field>
+            <field name="product_tmpl_id" ref="product_rental_moto"/>
+            <field name="min_quantity">4</field>
+            <field name="compute_price">fixed</field>
+            <field name="fixed_price">120.0</field>
+        </record>
+        <record id="pricelist_general_item_7" model="product.pricelist.item">
+            <field name="pricelist_id" ref="pricelist_general"/>
+            <field name="applied_on">1_product</field>
+            <field name="product_tmpl_id" ref="product_rental_moto"/>
+            <field name="min_quantity">7</field>
+            <field name="compute_price">fixed</field>
+            <field name="fixed_price">100.0</field>
+        </record>
+        <record id="pricelist_general_item_10" model="product.pricelist.item">
+            <field name="pricelist_id" ref="pricelist_general"/>
+            <field name="applied_on">1_product</field>
+            <field name="product_tmpl_id" ref="product_rental_moto"/>
+            <field name="min_quantity">10</field>
+            <field name="compute_price">fixed</field>
+            <field name="fixed_price">90.0</field>
+        </record>
+        <record id="pricelist_general_item_14" model="product.pricelist.item">
+            <field name="pricelist_id" ref="pricelist_general"/>
+            <field name="applied_on">1_product</field>
+            <field name="product_tmpl_id" ref="product_rental_moto"/>
+            <field name="min_quantity">14</field>
+            <field name="compute_price">fixed</field>
+            <field name="fixed_price">80.0</field>
+        </record>
+        <record id="pricelist_general_item_21" model="product.pricelist.item">
+            <field name="pricelist_id" ref="pricelist_general"/>
+            <field name="applied_on">1_product</field>
+            <field name="product_tmpl_id" ref="product_rental_moto"/>
+            <field name="min_quantity">21</field>
+            <field name="compute_price">fixed</field>
+            <field name="fixed_price">70.0</field>
+        </record>
+        <record id="pricelist_general_item_30" model="product.pricelist.item">
+            <field name="pricelist_id" ref="pricelist_general"/>
+            <field name="applied_on">1_product</field>
+            <field name="product_tmpl_id" ref="product_rental_moto"/>
+            <field name="min_quantity">30</field>
+            <field name="compute_price">fixed</field>
+            <field name="fixed_price">50.0</field>
+        </record>
+
+        <record id="pricelist_moradores" model="product.pricelist">
+            <field name="name">Moradores</field>
+            <field name="currency_id" ref="base.BRL"/>
+            <field name="sequence">2</field>
+        </record>
+
+        <record id="pricelist_moradores_item_1" model="product.pricelist.item">
+            <field name="pricelist_id" ref="pricelist_moradores"/>
+            <field name="applied_on">1_product</field>
+            <field name="product_tmpl_id" ref="product_rental_moto"/>
+            <field name="min_quantity">1</field>
+            <field name="compute_price">fixed</field>
+            <field name="fixed_price">80.0</field>
+        </record>
+        <record id="pricelist_moradores_item_4" model="product.pricelist.item">
+            <field name="pricelist_id" ref="pricelist_moradores"/>
+            <field name="applied_on">1_product</field>
+            <field name="product_tmpl_id" ref="product_rental_moto"/>
+            <field name="min_quantity">4</field>
+            <field name="compute_price">fixed</field>
+            <field name="fixed_price">75.0</field>
+        </record>
+        <record id="pricelist_moradores_item_7" model="product.pricelist.item">
+            <field name="pricelist_id" ref="pricelist_moradores"/>
+            <field name="applied_on">1_product</field>
+            <field name="product_tmpl_id" ref="product_rental_moto"/>
+            <field name="min_quantity">7</field>
+            <field name="compute_price">fixed</field>
+            <field name="fixed_price">70.0</field>
+        </record>
+        <record id="pricelist_moradores_item_14" model="product.pricelist.item">
+            <field name="pricelist_id" ref="pricelist_moradores"/>
+            <field name="applied_on">1_product</field>
+            <field name="product_tmpl_id" ref="product_rental_moto"/>
+            <field name="min_quantity">14</field>
+            <field name="compute_price">fixed</field>
+            <field name="fixed_price">60.0</field>
+        </record>
+        <record id="pricelist_moradores_item_30" model="product.pricelist.item">
+            <field name="pricelist_id" ref="pricelist_moradores"/>
+            <field name="applied_on">1_product</field>
+            <field name="product_tmpl_id" ref="product_rental_moto"/>
+            <field name="min_quantity">30</field>
+            <field name="compute_price">fixed</field>
+            <field name="fixed_price">40.0</field>
+        </record>
+
+    </data>
+</odoo>

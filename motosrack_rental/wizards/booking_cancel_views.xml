@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_booking_cancel_form" model="ir.ui.view">
+        <field name="name">motosrack.booking.cancel.form</field>
+        <field name="model">motosrack.booking.cancel</field>
+        <field name="arch" type="xml">
+            <form string="Cancellation">
+                <field name="booking_id" invisible="1"/>
+                <field name="currency_id" invisible="1"/>
+                <div class="alert alert-info" role="alert">
+                    The bike is already free. What is left is deciding what happens
+                    with what was collected: the decision is manual and it stays in
+                    the booking's log.
+                </div>
+                <group>
+                    <group>
+                        <field name="amount_paid"/>
+                        <field name="decision" widget="radio"/>
+                    </group>
+                    <group>
+                        <field name="retained_amount"
+                               readonly="decision != 'refund_partial'"/>
+                        <field name="refund_amount"/>
+                        <field name="journal_id"
+                               invisible="refund_amount &lt;= 0"
+                               required="refund_amount &gt; 0"
+                               options="{'no_create': True}"/>
+                    </group>
+                </group>
+                <group string="Reason">
+                    <field name="reason" nolabel="1"/>
+                </group>
+                <footer>
+                    <button name="action_apply" type="object" string="Apply"
+                            class="btn-primary"/>
+                    <button string="Decide later" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

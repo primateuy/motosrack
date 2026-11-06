@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_motosrack_rental_parameters,motosrack.rental.parameters,model_motosrack_rental_parameters,primate_resource_booking.group_booking_user,1,0,0,0
+access_motosrack_booking_payment,motosrack.booking.payment,model_motosrack_booking_payment,group_motosrack_operator,1,1,1,1
+access_motosrack_booking_extend,motosrack.booking.extend,model_motosrack_booking_extend,group_motosrack_operator,1,1,1,1
+access_motosrack_booking_cancel,motosrack.booking.cancel,model_motosrack_booking_cancel,group_motosrack_operator,1,1,1,1
+access_motosrack_booking_deliver,motosrack.booking.deliver,model_motosrack_booking_deliver,group_motosrack_operator,1,1,1,1
+access_motosrack_booking_return,motosrack.booking.return,model_motosrack_booking_return,group_motosrack_operator,1,1,1,1

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data noupdate="1">
+
+        <!-- The three ways the shop actually gets paid. Created as bank /
+             cash journals so that registering a payment reconciles the
+             invoice the same way Odoo does natively. -->
+
+        <record id="journal_pix" model="account.journal">
+            <field name="name">Pix</field>
+            <field name="code">PIX</field>
+            <field name="type">bank</field>
+            <field name="sequence">11</field>
+        </record>
+
+        <record id="journal_cash" model="account.journal">
+            <field name="name">Efectivo</field>
+            <field name="code">EFE</field>
+            <field name="type">cash</field>
+            <field name="sequence">12</field>
+        </record>
+
+        <record id="journal_card" model="account.journal">
+            <field name="name">Tarjeta</field>
+            <field name="code">TAR</field>
+            <field name="type">bank</field>
+            <field name="sequence">13</field>
+        </record>
+
+    </data>
+</odoo>

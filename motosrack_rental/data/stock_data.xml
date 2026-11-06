@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data noupdate="1">
+
+        <!-- Helmets out with a customer are still ours, so they move to
+             another internal location instead of leaving the company. The
+             location hangs off the warehouse *view* rather than off
+             WH/Estoque: a move inside Estoque's own subtree would not lower
+             what Estoque reports on hand, and the whole point is that the
+             operator sees how many helmets are left in the shop.
+
+             There is no stable external id for that view location in 19.0
+             (the warehouse creates it), so it is looked up by its usage. -->
+        <record id="location_helmets_rented" model="stock.location">
+            <field name="name">Cascos en alquiler</field>
+            <field name="usage">internal</field>
+            <field name="location_id" search="[('usage', '=', 'view')]"/>
+        </record>
+
+        <!-- What never comes back must not land back in available stock. An
+             inventory location takes it out of the counts and leaves the
+             shortage visible in the valuation. -->
+        <record id="location_helmets_lost" model="stock.location">
+            <field name="name">Cascos perdidos o dañados</field>
+            <field name="usage">inventory</field>
+        </record>
+
+    </data>
+</odoo>

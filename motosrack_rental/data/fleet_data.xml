@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data noupdate="1">
+
+        <!-- The eight Honda Pop of the shop. Loaded with noupdate so they
+             can be renamed, given a plate and edited freely without a
+             module update putting the placeholder back. -->
+
+        <record id="fleet_brand_honda" model="fleet.vehicle.model.brand">
+            <field name="name">Honda</field>
+        </record>
+
+        <record id="fleet_model_honda_pop" model="fleet.vehicle.model">
+            <field name="name">Pop</field>
+            <field name="brand_id" ref="fleet_brand_honda"/>
+            <field name="vehicle_type">bike</field>
+        </record>
+
+        <record id="moto_1" model="fleet.vehicle">
+            <field name="rental_label">Moto 1</field>
+            <field name="model_id" ref="fleet_model_honda_pop"/>
+            <field name="company_id" ref="base.main_company"/>
+        </record>
+        <record id="moto_2" model="fleet.vehicle">
+            <field name="rental_label">Moto 2</field>
+            <field name="model_id" ref="fleet_model_honda_pop"/>
+            <field name="company_id" ref="base.main_company"/>
+        </record>
+        <record id="moto_3" model="fleet.vehicle">
+            <field name="rental_label">Moto 3</field>
+            <field name="model_id" ref="fleet_model_honda_pop"/>
+            <field name="company_id" ref="base.main_company"/>
+        </record>
+        <record id="moto_4" model="fleet.vehicle">
+            <field name="rental_label">Moto 4</field>
+            <field name="model_id" ref="fleet_model_honda_pop"/>
+            <field name="company_id" ref="base.main_company"/>
+        </record>
+        <record id="moto_5" model="fleet.vehicle">
+            <field name="rental_label">Moto 5</field>
+            <field name="model_id" ref="fleet_model_honda_pop"/>
+            <field name="company_id" ref="base.main_company"/>
+        </record>
+        <record id="moto_6" model="fleet.vehicle">
+            <field name="rental_label">Moto 6</field>
+            <field name="model_id" ref="fleet_model_honda_pop"/>
+            <field name="company_id" ref="base.main_company"/>
+        </record>
+        <record id="moto_7" model="fleet.vehicle">
+            <field name="rental_label">Moto 7</field>
+            <field name="model_id" ref="fleet_model_honda_pop"/>
+            <field name="company_id" ref="base.main_company"/>
+        </record>
+        <record id="moto_8" model="fleet.vehicle">
+            <field name="rental_label">Moto 8</field>
+            <field name="model_id" ref="fleet_model_honda_pop"/>
+            <field name="company_id" ref="base.main_company"/>
+        </record>
+
+    </data>
+</odoo>

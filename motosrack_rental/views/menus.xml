@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <menuitem id="menu_motosrack_root"
+              name="Motos Rack"
+              sequence="15"
+              groups="group_motosrack_operator"/>
+
+    <menuitem id="menu_motosrack_agenda"
+              name="Agenda"
+              parent="menu_motosrack_root"
+              action="action_rental_booking"
+              sequence="10"/>
+
+    <menuitem id="menu_motosrack_today"
+              name="Day of operation"
+              parent="menu_motosrack_root"
+              action="action_rental_booking_today"
+              sequence="20"/>
+
+    <menuitem id="menu_motosrack_fleet"
+              name="Bikes"
+              parent="menu_motosrack_root"
+              action="fleet.fleet_vehicle_action"
+              sequence="30"/>
+
+    <menuitem id="menu_motosrack_configuration"
+              name="Configuration"
+              parent="menu_motosrack_root"
+              sequence="90"/>
+
+    <menuitem id="menu_motosrack_settings"
+              name="Settings"
+              parent="menu_motosrack_configuration"
+              action="action_motosrack_config_settings"
+              sequence="10"
+              groups="base.group_system"/>
+
+    <menuitem id="menu_motosrack_blocks"
+              name="Blocks"
+              parent="menu_motosrack_configuration"
+              action="primate_resource_booking.action_booking_block"
+              sequence="20"/>
+
+    <menuitem id="menu_motosrack_block_reasons"
+              name="Block Reasons"
+              parent="menu_motosrack_configuration"
+              action="primate_resource_booking.action_booking_block_reason"
+              sequence="30"/>
+
+    <menuitem id="menu_motosrack_pricelists"
+              name="Pricelists"
+              parent="menu_motosrack_configuration"
+              action="product.product_pricelist_action2"
+              sequence="40"/>
+
+</odoo>
