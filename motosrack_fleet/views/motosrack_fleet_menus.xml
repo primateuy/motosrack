@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem id="menu_motosrack_vehicle_document"
+              name="Documentacion"
+              parent="fleet.fleet_vehicles"
+              action="action_motosrack_vehicle_document"
+              sequence="35"/>
+
+    <menuitem id="menu_motosrack_maintenance_plan"
+              name="Planes de mantenimiento"
+              parent="fleet.fleet_services_configuration"
+              action="action_motosrack_maintenance_plan"
+              sequence="5"/>
+
+</odoo>

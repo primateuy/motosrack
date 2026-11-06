@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_motosrack_maintenance_plan_user,motosrack.maintenance.plan.user,model_motosrack_maintenance_plan,fleet.fleet_group_user,1,0,0,0
+access_motosrack_maintenance_plan_manager,motosrack.maintenance.plan.manager,model_motosrack_maintenance_plan,fleet.fleet_group_manager,1,1,1,1
+access_motosrack_vehicle_document_user,motosrack.vehicle.document.user,model_motosrack_vehicle_document,fleet.fleet_group_user,1,1,1,0
+access_motosrack_vehicle_document_manager,motosrack.vehicle.document.manager,model_motosrack_vehicle_document,fleet.fleet_group_manager,1,1,1,1

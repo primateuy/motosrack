@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="fleet_vehicle_view_form_motosrack_fleet" model="ir.ui.view">
+        <field name="name">fleet.vehicle.form.motosrack.fleet</field>
+        <field name="model">fleet.vehicle</field>
+        <field name="inherit_id" ref="fleet.fleet_vehicle_view_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="action_view_documents"
+                        type="object"
+                        class="oe_stat_button"
+                        icon="fa-file-text-o">
+                    <field name="document_count" widget="statinfo" string="Documentos"/>
+                </button>
+            </xpath>
+
+            <xpath expr="//sheet" position="inside">
+                <widget name="web_ribbon" title="Service vencido" bg_color="text-bg-danger"
+                        invisible="maintenance_state != 'overdue'"/>
+            </xpath>
+
+            <xpath expr="//notebook" position="inside">
+                <page string="Mantenimiento" name="motosrack_maintenance">
+                    <group>
+                        <group string="Plan">
+                            <field name="maintenance_plan_id"
+                                   options="{'no_quick_create': True}"/>
+                            <field name="maintenance_state"/>
+                        </group>
+                        <group string="Ultimo service">
+                            <field name="last_service_date"/>
+                            <field name="last_service_odometer"/>
+                        </group>
+                        <group string="Proximo service"
+                               invisible="not maintenance_plan_id">
+                            <field name="next_service_date"
+                                   invisible="not next_service_date"/>
+                            <field name="next_service_odometer"
+                                   invisible="not next_service_odometer"/>
+                            <field name="km_to_next_service"
+                                   invisible="not next_service_odometer"/>
+                            <field name="days_to_next_service"
+                                   invisible="not next_service_date"/>
+                        </group>
+                    </group>
+                    <separator string="Documentacion"/>
+                    <field name="document_ids" context="{'default_vehicle_id': id}">
+                        <list editable="bottom"
+                              decoration-danger="state == 'expired'"
+                              decoration-warning="state == 'expiring'">
+                            <field name="doc_type"/>
+                            <field name="name"/>
+                            <field name="date_end"/>
+                            <field name="days_to_expiry" string="Dias"/>
+                            <field name="state" widget="badge"
+                                   decoration-success="state == 'valid'"
+                                   decoration-warning="state == 'expiring'"
+                                   decoration-danger="state == 'expired'"/>
+                            <field name="amount" optional="hide"/>
+                            <field name="currency_id" column_invisible="True"/>
+                        </list>
+                    </field>
+                </page>
+            </xpath>
+
+        </field>
+    </record>
+
+    <record id="fleet_vehicle_view_list_motosrack_fleet" model="ir.ui.view">
+        <field name="name">fleet.vehicle.list.motosrack.fleet</field>
+        <field name="model">fleet.vehicle</field>
+        <field name="inherit_id" ref="fleet.fleet_vehicle_view_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='license_plate']" position="after">
+                <field name="maintenance_state" optional="show" widget="badge"
+                       decoration-success="maintenance_state == 'ok'"
+                       decoration-warning="maintenance_state == 'soon'"
+                       decoration-danger="maintenance_state == 'overdue'"/>
+                <field name="next_service_date" optional="hide"/>
+                <field name="next_service_odometer" optional="hide"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="fleet_vehicle_view_search_motosrack_fleet" model="ir.ui.view">
+        <field name="name">fleet.vehicle.search.motosrack.fleet</field>
+        <field name="model">fleet.vehicle</field>
+        <field name="inherit_id" ref="fleet.fleet_vehicle_view_search"/>
+        <field name="arch" type="xml">
+            <xpath expr="//search/group" position="before">
+                <separator/>
+                <filter name="motosrack_service_overdue" string="Service vencido"
+                        domain="[('maintenance_state', '=', 'overdue')]"/>
+                <filter name="motosrack_service_soon" string="Service proximo"
+                        domain="[('maintenance_state', '=', 'soon')]"/>
+                <filter name="motosrack_doc_expired" string="Documentacion vencida"
+                        domain="[('document_ids.state', '=', 'expired')]"/>
+            </xpath>
+            <xpath expr="//search/group" position="inside">
+                <filter name="motosrack_groupby_plan" string="Plan de mantenimiento"
+                        context="{'group_by': 'maintenance_plan_id'}"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

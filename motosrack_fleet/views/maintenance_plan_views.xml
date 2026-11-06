@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="motosrack_maintenance_plan_view_list" model="ir.ui.view">
+        <field name="name">motosrack.maintenance.plan.list</field>
+        <field name="model">motosrack.maintenance.plan</field>
+        <field name="arch" type="xml">
+            <list string="Planes de mantenimiento">
+                <field name="name"/>
+                <field name="service_type_id"/>
+                <field name="interval_km"/>
+                <field name="interval_months"/>
+                <field name="vehicle_count"/>
+                <field name="company_id" groups="base.group_multi_company" optional="hide"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="motosrack_maintenance_plan_view_form" model="ir.ui.view">
+        <field name="name">motosrack.maintenance.plan.form</field>
+        <field name="model">motosrack.maintenance.plan</field>
+        <field name="arch" type="xml">
+            <form string="Plan de mantenimiento">
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_view_vehicles"
+                                type="object"
+                                class="oe_stat_button"
+                                icon="fa-motorcycle"
+                                invisible="vehicle_count == 0">
+                            <field name="vehicle_count" widget="statinfo" string="Motos"/>
+                        </button>
+                    </div>
+                    <widget name="web_ribbon" title="Archivado" bg_color="text-bg-danger"
+                            invisible="active"/>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1><field name="name" placeholder="Service cada 3.000 km"/></h1>
+                    </div>
+                    <group>
+                        <group string="Periodicidad">
+                            <field name="interval_km"/>
+                            <field name="interval_months"/>
+                        </group>
+                        <group string="Aviso anticipado">
+                            <field name="alert_km"/>
+                            <field name="alert_days"/>
+                        </group>
+                        <group string="Alcance">
+                            <field name="service_type_id"
+                                   options="{'no_quick_create': True}"/>
+                            <field name="model_ids" widget="many2many_tags"
+                                   options="{'no_create_edit': True}"/>
+                        </group>
+                        <group string="Otros">
+                            <field name="active" invisible="1"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Trabajos incluidos" name="note">
+                            <field name="note" placeholder="Que se hace en cada service..."/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="motosrack_maintenance_plan_view_search" model="ir.ui.view">
+        <field name="name">motosrack.maintenance.plan.search</field>
+        <field name="model">motosrack.maintenance.plan</field>
+        <field name="arch" type="xml">
+            <search string="Planes de mantenimiento">
+                <field name="name"/>
+                <field name="service_type_id"/>
+                <field name="model_ids"/>
+                <filter name="inactive" string="Archivados"
+                        domain="[('active', '=', False)]"/>
+                <group>
+                    <filter name="groupby_service_type" string="Tipo de service"
+                            context="{'group_by': 'service_type_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_motosrack_maintenance_plan" model="ir.actions.act_window">
+        <field name="name">Planes de mantenimiento</field>
+        <field name="res_model">motosrack.maintenance.plan</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Define el primer plan de mantenimiento
+            </p>
+            <p>
+                Un plan programa el service de las motos por kilometraje, por
+                tiempo o por ambos, y se asigna solo a las motos de los modelos
+                que indiques.
+            </p>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="motosrack_vehicle_document_view_list" model="ir.ui.view">
+        <field name="name">motosrack.vehicle.document.list</field>
+        <field name="model">motosrack.vehicle.document</field>
+        <field name="arch" type="xml">
+            <list string="Documentacion"
+                  decoration-danger="state == 'expired'"
+                  decoration-warning="state == 'expiring'">
+                <field name="vehicle_id"/>
+                <field name="doc_type"/>
+                <field name="name" optional="show"/>
+                <field name="partner_id" optional="hide"/>
+                <field name="date_start" optional="hide"/>
+                <field name="date_end"/>
+                <field name="days_to_expiry" string="Dias"/>
+                <field name="state" widget="badge"
+                       decoration-success="state == 'valid'"
+                       decoration-warning="state == 'expiring'"
+                       decoration-danger="state == 'expired'"/>
+                <field name="amount" optional="hide" sum="Total"/>
+                <field name="currency_id" column_invisible="True"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="motosrack_vehicle_document_view_form" model="ir.ui.view">
+        <field name="name">motosrack.vehicle.document.form</field>
+        <field name="model">motosrack.vehicle.document</field>
+        <field name="arch" type="xml">
+            <form string="Documento de la moto">
+                <header>
+                    <button name="action_renew"
+                            type="object"
+                            string="Renovar"
+                            class="btn-primary"
+                            invisible="state == 'valid'"/>
+                </header>
+                <sheet>
+                    <widget name="web_ribbon" title="Vencido" bg_color="text-bg-danger"
+                            invisible="state != 'expired'"/>
+                    <widget name="web_ribbon" title="Por vencer" bg_color="text-bg-warning"
+                            invisible="state != 'expiring'"/>
+                    <group>
+                        <group string="Documento">
+                            <field name="doc_type"/>
+                            <field name="name"/>
+                            <field name="vehicle_id"
+                                   options="{'no_quick_create': True}"/>
+                            <field name="partner_id"/>
+                        </group>
+                        <group string="Vigencia">
+                            <field name="date_start"/>
+                            <field name="date_end"/>
+                            <field name="alert_days"/>
+                            <field name="state"/>
+                            <field name="days_to_expiry"/>
+                        </group>
+                        <group string="Costo">
+                            <field name="amount"/>
+                            <field name="currency_id" groups="base.group_multi_currency"/>
+                        </group>
+                        <group string="Archivo">
+                            <field name="document_file" filename="document_filename"/>
+                            <field name="document_filename" invisible="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Notas" name="note">
+                            <field name="note"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="motosrack_vehicle_document_view_search" model="ir.ui.view">
+        <field name="name">motosrack.vehicle.document.search</field>
+        <field name="model">motosrack.vehicle.document</field>
+        <field name="arch" type="xml">
+            <search string="Documentacion">
+                <field name="vehicle_id"/>
+                <field name="name"/>
+                <field name="partner_id"/>
+                <filter name="expired" string="Vencidos"
+                        domain="[('state', '=', 'expired')]"/>
+                <filter name="expiring" string="Por vencer"
+                        domain="[('state', '=', 'expiring')]"/>
+                <filter name="valid" string="Vigentes"
+                        domain="[('state', '=', 'valid')]"/>
+                <separator/>
+                <filter name="filter_date_end" string="Vencimiento"
+                        date="date_end"/>
+                <group>
+                    <filter name="groupby_vehicle" string="Moto"
+                            context="{'group_by': 'vehicle_id'}"/>
+                    <filter name="groupby_type" string="Tipo"
+                            context="{'group_by': 'doc_type'}"/>
+                    <filter name="groupby_date_end" string="Vence el"
+                            context="{'group_by': 'date_end:month'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_motosrack_vehicle_document" model="ir.actions.act_window">
+        <field name="name">Documentacion</field>
+        <field name="res_model">motosrack.vehicle.document</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Carga el primer documento
+            </p>
+            <p>
+                Registra el CRLV, el seguro y el IPVA de cada moto con su fecha
+                de vencimiento, y el sistema avisa antes de que caduquen.
+            </p>
+        </field>
+    </record>
+
+</odoo>
