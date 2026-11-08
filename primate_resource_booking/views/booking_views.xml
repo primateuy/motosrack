@@ -7,28 +7,28 @@
     <!-- context, which is the extension point every vertical          -->
     <!-- overrides with its own short form.                            -->
     <!-- ============================================================= -->
-    <record id="view_booking_timeline" model="ir.ui.view">
-        <field name="name">primate.booking.timeline</field>
+    <record id="view_booking_agenda" model="ir.ui.view">
+        <field name="name">primate.booking.agenda</field>
         <field name="model">primate.booking</field>
-        <field name="type">timeline</field>
         <field name="arch" type="xml">
-            <timeline date_start="start"
-                      date_stop="stop"
-                      default_group_by="resource_id"
-                      event_open_popup="true"
-                      stack="true"
-                      zoomKey="ctrlKey"
-                      colors="#9e9e9e:state == 'cancelled';#4caf50:state == 'done';#ff9800:state == 'in_use';#2196f3:state == 'confirmed';#cfd8dc:state == 'draft'">
-                <field name="name"/>
-                <field name="partner_id"/>
-                <field name="state"/>
-                <field name="resource_id"/>
-            </timeline>
+            <!-- Blocks are drawn on the same row as the bookings: they mark
+                 the resource without taking it, and hiding them would make
+                 the agenda lie about what is going on. -->
+            <agenda date_start="start"
+                    date_stop="stop"
+                    group_by="resource_id"
+                    label="display_name"
+                    state="state"
+                    overlay_model="primate.booking.block"
+                    overlay_date_start="start"
+                    overlay_date_stop="stop"
+                    overlay_group_by="resource_id"
+                    overlay_label="reason_id"/>
         </field>
     </record>
 
     <!-- ============================================================= -->
-    <!-- Quick create: the default short form opened from the timeline -->
+    <!-- Quick create: the default short form opened from the agenda   -->
     <!-- ============================================================= -->
     <record id="view_booking_quick_form" model="ir.ui.view">
         <field name="name">primate.booking.quick.form</field>
@@ -258,15 +258,15 @@
     <record id="action_booking" model="ir.actions.act_window">
         <field name="name">Agenda</field>
         <field name="res_model">primate.booking</field>
-        <field name="view_mode">timeline,list,calendar,kanban,form</field>
+        <field name="view_mode">agenda,list,calendar,kanban,form</field>
         <field name="search_view_id" ref="view_booking_search"/>
         <field name="context">{'form_view_ref': 'primate_resource_booking.view_booking_quick_form'}</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">Book a resource</p>
             <p>
-                Drag a range on the timeline to create a booking. A draft
-                booking blocks nothing: the resource is only held once the
-                booking is confirmed.
+                Drag over the days of a resource row to open a booking on
+                that range. A draft booking blocks nothing: the resource is
+                only held once the booking is confirmed.
             </p>
         </field>
     </record>

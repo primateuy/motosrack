@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data noupdate="1">
+
+        <!-- The list a walk-in customer gets when nothing else applies. -->
+
+        <function model="ir.config_parameter" name="set_param"
+                  eval="('primate_vehicle_rental.default_pricelist_id',
+                         str(obj().env.ref('motosrack.pricelist_general').id))"/>
+
+    </data>
+</odoo>

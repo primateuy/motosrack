@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 {
     "name": "Primate Resource Booking",
-    "summary": "Generic booking agenda over resources, with a timeline view",
+    "summary": "Generic booking agenda over resources, with its own planning view",
     "description": """
 Generic, vertical-agnostic booking agenda
 =========================================
 
 Books ``resource.resource`` records over a time span and shows them on an
-interactive timeline. It knows nothing about sales, invoicing or any specific
+agenda of its own. It knows nothing about sales, invoicing or any specific
 business: verticals (motorbike rental, clinic consulting rooms, ...) extend
 ``primate.booking`` with their own fields and plug their own quick-create form
 through the ``form_view_ref`` key of the action context.
@@ -30,8 +30,19 @@ Main concepts
     "depends": [
         "mail",
         "resource",
-        "web_timeline",
     ],
+    "assets": {
+        "web.assets_backend": [
+            "primate_resource_booking/static/src/views/agenda/agenda.scss",
+            "primate_resource_booking/static/src/views/agenda/agenda_arch_parser.esm.js",
+            "primate_resource_booking/static/src/views/agenda/agenda_model.esm.js",
+            "primate_resource_booking/static/src/views/agenda/agenda_renderer.esm.js",
+            "primate_resource_booking/static/src/views/agenda/agenda_renderer.xml",
+            "primate_resource_booking/static/src/views/agenda/agenda_controller.esm.js",
+            "primate_resource_booking/static/src/views/agenda/agenda_controller.xml",
+            "primate_resource_booking/static/src/views/agenda/agenda_view.esm.js",
+        ],
+    },
     "data": [
         "security/booking_security.xml",
         "security/ir.model.access.csv",

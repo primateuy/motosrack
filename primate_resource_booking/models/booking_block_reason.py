@@ -7,7 +7,7 @@ class BookingBlockReason(models.Model):
     """Catalogue of reasons why a resource can be blocked.
 
     Verticals load their own reasons as data. A reason that does not block
-    availability is purely informative: it still shows up on the timeline but
+    availability is purely informative: it still shows up on the agenda but
     it never makes ``_get_availability`` return unavailable.
     """
 

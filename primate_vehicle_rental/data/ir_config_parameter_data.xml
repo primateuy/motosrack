@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data noupdate="1">
+
+        <!-- Defaults of the business rules. All editable from Ajustes. -->
+
+        <record id="param_day_tolerance_hours" model="ir.config_parameter">
+            <field name="key">primate_vehicle_rental.day_tolerance_hours</field>
+            <field name="value">2.0</field>
+        </record>
+
+        <record id="param_max_tier_days" model="ir.config_parameter">
+            <field name="key">primate_vehicle_rental.max_tier_days</field>
+            <field name="value">30</field>
+        </record>
+
+        <record id="param_tier_cap_enabled" model="ir.config_parameter">
+            <field name="key">primate_vehicle_rental.tier_cap_enabled</field>
+            <field name="value">False</field>
+        </record>
+
+        <record id="param_default_extension_criterion" model="ir.config_parameter">
+            <field name="key">primate_vehicle_rental.default_extension_criterion</field>
+            <field name="value">accumulated</field>
+        </record>
+
+        <record id="param_late_tolerance_hours" model="ir.config_parameter">
+            <field name="key">primate_vehicle_rental.late_tolerance_hours</field>
+            <field name="value">2.0</field>
+        </record>
+
+        <record id="param_default_helmets" model="ir.config_parameter">
+            <field name="key">primate_vehicle_rental.default_helmets</field>
+            <field name="value">2</field>
+        </record>
+
+        <record id="param_max_helmets" model="ir.config_parameter">
+            <field name="key">primate_vehicle_rental.max_helmets</field>
+            <field name="value">2</field>
+        </record>
+
+    </data>
+</odoo>

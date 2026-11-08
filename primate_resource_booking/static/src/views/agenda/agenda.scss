@@ -1,0 +1,530 @@
+// Agenda view. Every rule is scoped under .o_primate_agenda so the module
+// styles nothing of Odoo's own.
+
+.o_primate_agenda {
+    --o-agenda-rail: 188px;
+    --o-agenda-col: 50px;
+    --o-agenda-row: 46px;
+
+    --o-agenda-ink: #1b1d26;
+    --o-agenda-ink-soft: #5c6072;
+    --o-agenda-ink-faint: #8b8fa3;
+    --o-agenda-surface: #ffffff;
+    --o-agenda-line: #dfe2ea;
+    --o-agenda-line-soft: #ebedf3;
+    --o-agenda-weekend: #eef0f6;
+    --o-agenda-accent: #4a3f8f;
+
+    --o-agenda-draft: #8b8fa3;
+    --o-agenda-draft-bg: #f1f2f6;
+    --o-agenda-confirmed: #2563a8;
+    --o-agenda-confirmed-bg: #dce9f8;
+    --o-agenda-in_use: #b4690e;
+    --o-agenda-in_use-bg: #fbeedb;
+    --o-agenda-done: #2f7d58;
+    --o-agenda-done-bg: #ddefe5;
+    --o-agenda-cancelled: #a1a5b4;
+    --o-agenda-cancelled-bg: #f4f5f8;
+    --o-agenda-block: #6b7083;
+    --o-agenda-block-bg: #e7e9f0;
+    --o-agenda-none: #8b8fa3;
+    --o-agenda-none-bg: #f1f2f6;
+
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    height: 100%;
+    color: var(--o-agenda-ink);
+
+    &[data-scale="week"] { --o-agenda-col: 92px; }
+    &[data-scale="fortnight"] { --o-agenda-col: 50px; }
+    &[data-scale="month"] { --o-agenda-col: 38px; }
+
+    &[data-density="compact"] { --o-agenda-row: 34px; }
+    &[data-density="cozy"] { --o-agenda-row: 46px; }
+    &[data-density="roomy"] { --o-agenda-row: 62px; }
+
+    // ----------------------------------------------------------------
+    // Board
+    // ----------------------------------------------------------------
+
+    .o_agenda_scroller {
+        flex: 1 1 auto;
+        overflow: auto;
+        overscroll-behavior-x: contain;
+        background: var(--o-agenda-surface);
+        border-top: 1px solid var(--o-agenda-line);
+    }
+
+    .o_agenda_board {
+        position: relative;
+        width: max-content;
+        min-width: 100%;
+    }
+
+    .o_agenda_head {
+        position: sticky;
+        top: 0;
+        z-index: 3;
+        display: grid;
+        grid-template-columns: var(--o-agenda-rail) calc(var(--o-agenda-col) * var(--o-agenda-cols));
+        background: var(--o-agenda-surface);
+        border-bottom: 1px solid var(--o-agenda-line);
+    }
+
+    .o_agenda_head_rail {
+        position: sticky;
+        left: 0;
+        z-index: 4;
+        display: flex;
+        align-items: center;
+        padding: 8px 12px;
+        background: var(--o-agenda-surface);
+        border-right: 1px solid var(--o-agenda-line);
+    }
+
+    .o_agenda_head_count {
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--o-agenda-ink-soft);
+    }
+
+    .o_agenda_months {
+        display: flex;
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: .08em;
+        text-transform: uppercase;
+        color: var(--o-agenda-ink-faint);
+        border-bottom: 1px solid var(--o-agenda-line-soft);
+    }
+
+    .o_agenda_month {
+        padding: 5px 8px;
+        overflow: hidden;
+        white-space: nowrap;
+        border-right: 1px solid var(--o-agenda-line-soft);
+
+        &:last-child { border-right: 0; }
+    }
+
+    .o_agenda_days {
+        display: grid;
+        grid-auto-flow: column;
+        grid-auto-columns: var(--o-agenda-col);
+    }
+
+    .o_agenda_day {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1px;
+        padding: 4px 0 6px;
+        min-width: 0;
+        border-right: 1px solid var(--o-agenda-line-soft);
+
+        &:last-child { border-right: 0; }
+        &.o_agenda_weekend { background: var(--o-agenda-weekend); }
+    }
+
+    .o_agenda_dow {
+        font-size: 9px;
+        font-weight: 600;
+        letter-spacing: .06em;
+        text-transform: uppercase;
+        color: var(--o-agenda-ink-faint);
+    }
+
+    .o_agenda_num {
+        min-width: 18px;
+        line-height: 18px;
+        font-size: 12px;
+        text-align: center;
+        border-radius: 999px;
+        font-variant-numeric: tabular-nums;
+        color: var(--o-agenda-ink-soft);
+    }
+
+    .o_agenda_today {
+        .o_agenda_num { background: var(--o-agenda-accent); color: #fff; font-weight: 600; }
+        .o_agenda_dow { color: var(--o-agenda-accent); }
+    }
+
+    // ----------------------------------------------------------------
+    // Rows
+    // ----------------------------------------------------------------
+
+    .o_agenda_row {
+        display: grid;
+        grid-template-columns: var(--o-agenda-rail) calc(var(--o-agenda-col) * var(--o-agenda-cols));
+        border-bottom: 1px solid var(--o-agenda-line-soft);
+
+        &:last-child { border-bottom: 0; }
+
+        &.o_agenda_row_unassigned {
+            border-top: 2px solid var(--o-agenda-line);
+            background: var(--o-agenda-line-soft);
+
+            .o_agenda_rail { background: var(--o-agenda-line-soft); }
+        }
+    }
+
+    .o_agenda_rail {
+        position: sticky;
+        left: 0;
+        z-index: 2;
+        display: flex;
+        align-items: center;
+        padding: 7px 12px;
+        min-width: 0;
+        background: var(--o-agenda-surface);
+        border-right: 1px solid var(--o-agenda-line);
+    }
+
+    .o_agenda_rail_name {
+        font-size: 13px;
+        font-weight: 600;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .o_agenda_track {
+        position: relative;
+        height: var(--o-agenda-row);
+        touch-action: pan-y;
+    }
+
+    .o_agenda_cells {
+        position: absolute;
+        inset: 0;
+        display: grid;
+        grid-auto-flow: column;
+        grid-auto-columns: var(--o-agenda-col);
+    }
+
+    .o_agenda_cell {
+        border-right: 1px solid var(--o-agenda-line-soft);
+
+        &:last-child { border-right: 0; }
+        &.o_agenda_weekend { background: var(--o-agenda-weekend); }
+    }
+
+    .o_agenda_bars { position: absolute; inset: 0; }
+
+    // ----------------------------------------------------------------
+    // Bars
+    // ----------------------------------------------------------------
+
+    .o_agenda_bar {
+        position: absolute;
+        top: 6px;
+        bottom: 6px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding: 0 8px 0 10px;
+        margin: 0 2px;
+        overflow: hidden;
+        font-size: 12px;
+        border: 1px solid transparent;
+        border-radius: 7px;
+        cursor: pointer;
+        background: var(--o-agenda-none-bg);
+        color: var(--o-agenda-none);
+
+        &:hover { box-shadow: 0 2px 8px rgba(27, 29, 38, .18); z-index: 2; }
+        &.o_agenda_bar_dragging { opacity: .75; z-index: 3; }
+        &.o_agenda_bar_clip_start { border-top-left-radius: 0; border-bottom-left-radius: 0; }
+        &.o_agenda_bar_clip_stop { border-top-right-radius: 0; border-bottom-right-radius: 0; }
+
+        @each $state in draft, confirmed, in_use, done, cancelled {
+            &[data-state="#{$state}"] {
+                background: var(--o-agenda-#{$state}-bg);
+                color: var(--o-agenda-#{$state});
+
+                .o_agenda_bar_stripe { background: var(--o-agenda-#{$state}); }
+            }
+        }
+
+        &[data-state="draft"] { border-style: dashed; border-color: var(--o-agenda-draft); }
+        &[data-state="cancelled"] .o_agenda_bar_label { text-decoration: line-through; }
+    }
+
+    .o_agenda_bar_stripe {
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 3px;
+        border-radius: 7px 0 0 7px;
+        background: var(--o-agenda-none);
+    }
+
+    .o_agenda_bar_label {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-weight: 500;
+    }
+
+    .o_agenda_bar_days {
+        margin-left: auto;
+        font-size: 11px;
+        opacity: .75;
+        white-space: nowrap;
+        font-variant-numeric: tabular-nums;
+    }
+
+    // A booking that continues an earlier one is pinned to it by a notch,
+    // so a rental and its extension read as one thing.
+    .o_agenda_bar_chained {
+        border-top-left-radius: 2px;
+        border-bottom-left-radius: 2px;
+
+        .o_agenda_bar_stripe { width: 0; }
+
+        &::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 50%;
+            width: 7px;
+            height: 7px;
+            transform: translate(-50%, -50%) rotate(45deg);
+            background: inherit;
+            border-left: 1px solid currentColor;
+            border-bottom: 1px solid currentColor;
+            opacity: .55;
+        }
+    }
+
+    // Blocks come from another model: they mark the row without taking it.
+    .o_agenda_bar_overlay {
+        top: 12px;
+        bottom: 12px;
+        border-radius: 5px;
+        border: 1px dashed var(--o-agenda-block);
+        color: var(--o-agenda-block);
+        background:
+            repeating-linear-gradient(135deg,
+                var(--o-agenda-block-bg) 0 6px,
+                transparent 6px 12px),
+            var(--o-agenda-surface);
+
+        .o_agenda_bar_stripe { display: none; }
+    }
+
+    // ----------------------------------------------------------------
+    // Now line and range being marked
+    // ----------------------------------------------------------------
+
+    .o_agenda_now {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 1px;
+        background: var(--o-agenda-accent);
+        opacity: .55;
+        pointer-events: none;
+        z-index: 3;
+
+        &::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--o-agenda-accent);
+            transform: translate(-50%, -3px);
+        }
+    }
+
+    .o_agenda_selection {
+        position: absolute;
+        top: 4px;
+        bottom: 4px;
+        margin: 0 2px;
+        display: flex;
+        align-items: center;
+        padding: 0 8px;
+        border-radius: 7px;
+        border: 1px dashed var(--o-agenda-accent);
+        background: rgba(74, 63, 143, .14);
+        color: var(--o-agenda-accent);
+        pointer-events: none;
+        z-index: 4;
+    }
+
+    .o_agenda_selection_label {
+        font-size: 11px;
+        font-weight: 600;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    // ----------------------------------------------------------------
+    // Legend
+    // ----------------------------------------------------------------
+
+    .o_agenda_legend {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px 18px;
+        padding: 10px 14px;
+        font-size: 12px;
+        color: var(--o-agenda-ink-soft);
+        background: var(--o-agenda-surface);
+        border-top: 1px solid var(--o-agenda-line);
+    }
+
+    .o_agenda_key { display: flex; align-items: center; gap: 7px; }
+
+    .o_agenda_swatch {
+        width: 22px;
+        height: 12px;
+        border-radius: 4px;
+        background: var(--o-agenda-none-bg);
+        border-left: 3px solid var(--o-agenda-none);
+
+        @each $state in draft, confirmed, in_use, done, cancelled {
+            &[data-state="#{$state}"] {
+                background: var(--o-agenda-#{$state}-bg);
+                border-left-color: var(--o-agenda-#{$state});
+            }
+        }
+
+        &[data-state="draft"] { border: 1px dashed var(--o-agenda-draft); }
+
+        &.o_agenda_swatch_overlay {
+            border: 1px dashed var(--o-agenda-block);
+            background:
+                repeating-linear-gradient(135deg,
+                    var(--o-agenda-block-bg) 0 5px,
+                    transparent 5px 10px),
+                var(--o-agenda-surface);
+        }
+    }
+
+    .o_agenda_hint { margin-left: auto; color: var(--o-agenda-ink-faint); }
+
+    // ----------------------------------------------------------------
+    // Bar styles the operator picks
+    // ----------------------------------------------------------------
+
+    &[data-variant="solid"] .o_agenda_bar {
+        padding-left: 9px;
+        border-radius: 6px;
+        font-weight: 500;
+
+        .o_agenda_bar_stripe { display: none; }
+
+        @each $state in confirmed, in_use, done, cancelled {
+            &[data-state="#{$state}"] {
+                background: var(--o-agenda-#{$state});
+                color: #fff;
+            }
+        }
+
+        &[data-state="draft"] { background: transparent; color: var(--o-agenda-ink-soft); }
+    }
+
+    &[data-variant="minimal"] .o_agenda_bar {
+        top: 9px;
+        bottom: 9px;
+        padding: 0 6px 0 4px;
+        border: 0;
+        border-bottom: 3px solid var(--o-agenda-none);
+        border-radius: 0;
+        background: transparent;
+        color: var(--o-agenda-ink);
+
+        .o_agenda_bar_stripe { display: none; }
+        &:hover { background: var(--o-agenda-line-soft); box-shadow: none; }
+
+        @each $state in confirmed, in_use, done, cancelled {
+            &[data-state="#{$state}"] {
+                background: transparent;
+                border-bottom-color: var(--o-agenda-#{$state});
+                color: var(--o-agenda-ink);
+            }
+        }
+
+        &[data-state="draft"] {
+            background: transparent;
+            border-bottom-style: dashed;
+            border-bottom-color: var(--o-agenda-draft);
+            color: var(--o-agenda-ink-soft);
+        }
+
+        &.o_agenda_bar_overlay {
+            background: transparent;
+            border: 0;
+            border-bottom: 3px dashed var(--o-agenda-block);
+            color: var(--o-agenda-block);
+        }
+
+        &.o_agenda_bar_chained::before {
+            left: -4px;
+            top: auto;
+            bottom: -3px;
+            width: 4px;
+            height: 3px;
+            transform: none;
+            background: currentColor;
+            border: 0;
+            opacity: 1;
+        }
+    }
+
+    // ----------------------------------------------------------------
+    // Toolbar
+    // ----------------------------------------------------------------
+
+    @media (max-width: 767px) {
+        --o-agenda-rail: 128px;
+
+        &[data-scale="week"] { --o-agenda-col: 64px; }
+        &[data-scale="fortnight"] { --o-agenda-col: 44px; }
+        &[data-scale="month"] { --o-agenda-col: 34px; }
+
+        .o_agenda_hint { display: none; }
+    }
+}
+
+.o_primate_agenda_toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 16px;
+    padding: 8px 12px;
+    background: #ebedf3;
+    border-bottom: 1px solid #dfe2ea;
+
+    .o_agenda_period {
+        font-size: 15px;
+        font-weight: 600;
+        text-transform: capitalize;
+    }
+
+    .o_agenda_spacer { flex: 1 1 auto; }
+
+    .o_agenda_group { display: flex; align-items: center; gap: 6px; }
+
+    .o_agenda_group_label {
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: .07em;
+        text-transform: uppercase;
+        color: #5c6072;
+    }
+}
+
+.o_primate_agenda_view {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+}

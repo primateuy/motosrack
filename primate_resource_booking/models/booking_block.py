@@ -11,7 +11,7 @@ class BookingBlock(models.Model):
 
     Blocks and bookings are independent records on purpose: a block may overlap
     a booking (the operator is warned, never stopped) and both stay visible on
-    the timeline instead of hiding each other.
+    the agenda instead of hiding each other.
 
     A block with no ``stop`` is an *open* block: it lasts until someone closes
     it. That is what lets a vertical say "this resource came back and is

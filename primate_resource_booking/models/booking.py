@@ -40,7 +40,7 @@ class Booking(models.Model):
         compute="_compute_name",
         store=True,
         readonly=False,
-        help="Label shown on the timeline. Computed by default, editable.",
+        help="Label shown on the agenda. Computed by default, editable.",
     )
     resource_id = fields.Many2one(
         comodel_name="resource.resource",

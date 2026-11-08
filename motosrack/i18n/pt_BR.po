@@ -1,0 +1,57 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* motosrack
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-06 20:28+0000\n"
+"PO-Revision-Date: 2026-11-06 20:28+0000\n"
+"Last-Translator: Primate\n"
+"Language-Team: Portuguese (BR)\n"
+"Language: pt_BR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: motosrack
+#: model:ir.model,name:motosrack.model_account_chart_template
+msgid "Account Chart Template"
+msgstr "Modelo de plano de contas"
+
+#. module: motosrack
+#: model:ir.model.fields,field_description:motosrack.field_account_chart_template__display_name
+msgid "Display Name"
+msgstr "Nome exibido"
+
+#. module: motosrack
+#: model:account.journal,name:motosrack.journal_cash
+msgid "Efectivo"
+msgstr "Dinheiro"
+
+#. module: motosrack
+#: model:product.pricelist,name:motosrack.pricelist_general
+msgid "General"
+msgstr "Geral"
+
+#. module: motosrack
+#: model:ir.model.fields,field_description:motosrack.field_account_chart_template__id
+msgid "ID"
+msgstr "ID"
+
+#. module: motosrack
+#: model:product.pricelist,name:motosrack.pricelist_moradores
+msgid "Moradores"
+msgstr "Moradores"
+
+#. module: motosrack
+#: model:account.journal,name:motosrack.journal_pix
+msgid "Pix"
+msgstr "Pix"
+
+#. module: motosrack
+#: model:account.journal,name:motosrack.journal_card
+msgid "Tarjeta"
+msgstr "Cartão"

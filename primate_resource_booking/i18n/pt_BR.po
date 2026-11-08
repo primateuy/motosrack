@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 19.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-06 13:34+0000\n"
-"PO-Revision-Date: 2026-11-06 13:34+0000\n"
+"POT-Creation-Date: 2026-11-06 20:28+0000\n"
+"PO-Revision-Date: 2026-11-06 20:28+0000\n"
 "Last-Translator: Primate\n"
 "Language-Team: Portuguese (BR)\n"
 "Language: pt_BR\n"
@@ -370,21 +370,23 @@ msgid "Done"
 msgstr "Concluída"
 
 #. module: primate_resource_booking
+#: model_terms:ir.actions.act_window,help:primate_resource_booking.action_booking
+msgid ""
+"Double-click on a resource row to open a booking, then drag\n"
+"                its edges to adjust the period. A draft booking blocks\n"
+"                nothing: the resource is only held once the booking is\n"
+"                confirmed."
+msgstr ""
+"Dê um duplo clique na linha de um recurso para abrir uma reserva e\n"
+"                depois arraste as bordas para ajustar o período. Uma reserva\n"
+"                em rascunho não bloqueia nada: o recurso só fica retido\n"
+"                quando é confirmada."
+
+#. module: primate_resource_booking
 #: model:ir.model.fields.selection,name:primate_resource_booking.selection__primate_booking__state__draft
 #: model_terms:ir.ui.view,arch_db:primate_resource_booking.view_booking_search
 msgid "Draft"
 msgstr "Rascunho"
-
-#. module: primate_resource_booking
-#: model_terms:ir.actions.act_window,help:primate_resource_booking.action_booking
-msgid ""
-"Drag a range on the timeline to create a booking. A draft\n"
-"                booking blocks nothing: the resource is only held once the\n"
-"                booking is confirmed."
-msgstr ""
-"Marque um intervalo na linha do tempo para criar uma reserva. Uma\n"
-"                reserva em rascunho não bloqueia nada: o recurso só fica\n"
-"                ocupado quando a reserva é confirmada."
 
 #. module: primate_resource_booking
 #: model:ir.model.fields,field_description:primate_resource_booking.field_primate_booking__duration_hours
