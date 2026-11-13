@@ -9,13 +9,23 @@ dice "Motos Rack" vive en los dos primeros.
 
 ## Módulos
 
-| Módulo | Qué es |
-|---|---|
-| `primate_resource_booking` | Agenda genérica de reservas sobre `resource.resource`. **No depende de Ventas**: la reutiliza cualquier vertical (el próximo es una clínica con profesionales y consultorios). |
-| `primate_vehicle_rental` | Alquiler de vehículos de la flota: precios por tramos, facturación, cobros, entregas, devoluciones, prórrogas y cancelaciones. No sabe nada de Pipa ni de motos: sirve para autos, bicis o cuatriciclos. |
-| `motosrack` | Lo que es de este negocio y de ningún otro: las ocho Honda Pop, las listas General y Moradores, y los diarios Pix, Efectivo y Tarjeta. |
-| `motosrack_fleet` | Planes de mantenimiento y documentos de vehículos. **Fuera de la Etapa 1 y sin instalar.** |
-| `primate_fleet_rental_ext` | Correcciones heredadas sobre el `fleet_rental` de Cybrosys. Queda del enfoque anterior; no participa de la Etapa 1. |
+Las dos capas reutilizables **ya no viven en este repo**: se extrajeron a
+[`PrimateUy-SAS/primate_booking`](https://github.com/PrimateUy-SAS/primate_booking)
+(rama `19.0`), para que las consuma cualquier cliente sin copiarlas. Acá queda
+sólo lo de Motos Rack.
+
+| Módulo | Repo | Qué es |
+|---|---|---|
+| `primate_resource_booking` | `primate_booking` | Agenda genérica de reservas sobre `resource.resource`. **No depende de Ventas**: la reutiliza cualquier vertical (el próximo es una clínica con profesionales y consultorios). |
+| `primate_vehicle_rental` | `primate_booking` | Alquiler de vehículos de la flota: precios por tramos, facturación, cobros, entregas, devoluciones, prórrogas y cancelaciones. No sabe nada de Pipa ni de motos: sirve para autos, bicis o cuatriciclos. |
+| `motosrack` | este repo | Lo que es de este negocio y de ningún otro: las ocho Honda Pop, las listas General y Moradores, y los diarios Pix, Efectivo y Tarjeta. |
+| `motosrack_fleet` | este repo | Planes de mantenimiento y documentos de vehículos. **Fuera de la Etapa 1 y sin instalar.** |
+| `primate_fleet_rental_ext` | este repo | Correcciones heredadas sobre el `fleet_rental` de Cybrosys. Queda del enfoque anterior; no participa de la Etapa 1. |
+
+Los dos primeros se clonan en `shared/primateuy/primate_booking-19.0` y entran
+al `addons_path` por el symlink `_shared/primate_booking`. **No se editan desde
+este proyecto**: los cambios van al repo compartido, que afecta a todos los
+clientes que lo usen.
 
 La agenda es una vista propia de Odoo (tipo `agenda`), escrita en OWL: no
 depende de ninguna librería de calendario de terceros. La única dependencia
@@ -114,8 +124,12 @@ createdb -T template0 o19_motosrack
 ```
 
 Instalar `motosrack` arrastra `primate_vehicle_rental`,
-`primate_resource_booking` y `l10n_br`. Para otro cliente se instala sólo
-`primate_vehicle_rental` y se cargan sus propios vehículos y listas.
+`primate_resource_booking` y `l10n_br`. Los dos primeros salen del repo
+compartido, así que el `addons_path` tiene que incluir
+`_shared/primate_booking` (ya está en `MotosRack.conf`).
+
+Para otro cliente se instala sólo `primate_vehicle_rental` desde el mismo repo
+compartido, y se cargan sus propios vehículos y listas.
 
 ## Tests
 

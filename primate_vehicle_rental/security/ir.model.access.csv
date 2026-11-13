@@ -1,7 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_primate_rental_parameters,primate.rental.parameters,model_primate_rental_parameters,primate_resource_booking.group_booking_user,1,0,0,0
-access_primate_rental_payment,primate.rental.payment,model_primate_rental_payment,group_rental_operator,1,1,1,1
-access_primate_rental_extend,primate.rental.extend,model_primate_rental_extend,group_rental_operator,1,1,1,1
-access_primate_rental_cancel,primate.rental.cancel,model_primate_rental_cancel,group_rental_operator,1,1,1,1
-access_primate_rental_deliver,primate.rental.deliver,model_primate_rental_deliver,group_rental_operator,1,1,1,1
-access_primate_rental_return,primate.rental.return,model_primate_rental_return,group_rental_operator,1,1,1,1
